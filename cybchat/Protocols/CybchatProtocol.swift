@@ -132,7 +132,7 @@ struct MessagePadding {
 
 // MARK: - Message Types
 
-/// Defines all message types in the BitChat protocol.
+/// Defines all message types in the CybChat protocol.
 /// Each type has a unique identifier for efficient binary encoding.
 /// Types are grouped by function: user messages, protocol control, encryption, etc.
 enum MessageType: UInt8 {
@@ -215,11 +215,11 @@ struct SpecialRecipients {
 
 // MARK: - Core Protocol Structures
 
-/// The core packet structure for all BitChat protocol messages.
+/// The core packet structure for all CybChat protocol messages.
 /// Encapsulates all data needed for routing through the mesh network,
 /// including TTL for hop limiting and optional encryption.
 /// - Note: Packets larger than BLE MTU (512 bytes) are automatically fragmented
-struct BitchatPacket: Codable {
+struct CybchatPacket: Codable {
     let version: UInt8
     let type: UInt8
     let senderID: Data
@@ -270,7 +270,7 @@ struct BitchatPacket: Codable {
         BinaryProtocol.encode(self)
     }
     
-    static func from(_ data: Data) -> BitchatPacket? {
+    static func from(_ data: Data) -> CybchatPacket? {
         BinaryProtocol.decode(data)
     }
 }
@@ -1177,11 +1177,11 @@ enum DeliveryStatus: Codable, Equatable {
 
 // MARK: - Message Model
 
-/// Represents a user-visible message in the BitChat system.
+/// Represents a user-visible message in the CybChat system.
 /// Handles both broadcast messages and private encrypted messages,
 /// with support for mentions, replies, and delivery tracking.
 /// - Note: This is the primary data model for chat messages
-class BitchatMessage: Codable {
+class CybchatMessage: Codable {
     let id: String
     let sender: String
     let content: String
@@ -1226,9 +1226,9 @@ class BitchatMessage: Codable {
     }
 }
 
-// Equatable conformance for BitchatMessage
-extension BitchatMessage: Equatable {
-    static func == (lhs: BitchatMessage, rhs: BitchatMessage) -> Bool {
+// Equatable conformance for CybchatMessage
+extension CybchatMessage: Equatable {
+    static func == (lhs: CybchatMessage, rhs: CybchatMessage) -> Bool {
         return lhs.id == rhs.id &&
                lhs.sender == rhs.sender &&
                lhs.content == rhs.content &&
@@ -1245,8 +1245,8 @@ extension BitchatMessage: Equatable {
 
 // MARK: - Delegate Protocol
 
-protocol BitchatDelegate: AnyObject {
-    func didReceiveMessage(_ message: BitchatMessage)
+protocol CybchatDelegate: AnyObject {
+    func didReceiveMessage(_ message: CybchatMessage)
     func didConnectToPeer(_ peerID: String)
     func didDisconnectFromPeer(_ peerID: String)
     func didUpdatePeerList(_ peers: [String])
@@ -1264,7 +1264,7 @@ protocol BitchatDelegate: AnyObject {
 }
 
 // Provide default implementation to make it effectively optional
-extension BitchatDelegate {
+extension CybchatDelegate {
     func isFavorite(fingerprint: String) -> Bool {
         return false
     }

@@ -331,19 +331,19 @@ class KeychainManager {
     func aggressiveCleanupLegacyItems() -> Int {
         var deletedCount = 0
         
-        // List of KNOWN bitchat service names from our development history
-        let knownBitchatServices = [
-            "com.bitchat.passwords",
-            "com.bitchat.deviceidentity",
-            "com.bitchat.noise.identity",
-            "chat.bitchat.passwords",
-            "bitchat.keychain",
-            "Bitchat",
-            "BitChat"
+        // List of KNOWN cybchat service names from our development history
+        let knownCybchatServices = [
+            "com.cybchat.passwords",
+            "com.cybchat.deviceidentity",
+            "com.cybchat.noise.identity",
+            "chat.cybchat.passwords",
+            "cybchat.keychain",
+            "Cybchat",
+            "CybChat"
         ]
         
         // First, delete all items from known legacy services
-        for legacyService in knownBitchatServices {
+        for legacyService in knownCybchatServices {
             let deleteQuery: [String: Any] = [
                 kSecClass as String: kSecClassGenericPassword,
                 kSecAttrService as String: legacyService
@@ -355,7 +355,7 @@ class KeychainManager {
             }
         }
         
-        // Now search for items that have our specific account patterns with bitchat service names
+        // Now search for items that have our specific account patterns with cybchat service names
         let searchQuery: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecMatchLimit as String: kSecMatchLimitAll,
@@ -370,13 +370,13 @@ class KeychainManager {
                 let account = item[kSecAttrAccount as String] as? String ?? ""
                 let service = item[kSecAttrService as String] as? String ?? ""
                 
-                // ONLY delete if service name contains "bitchat" somewhere
+                // ONLY delete if service name contains "cybchat" somewhere
                 // This ensures we never touch other apps' keychain items
                 var shouldDelete = false
                 
-                // Check if service contains "bitchat" (case insensitive) but NOT our current service
+                // Check if service contains "cybchat" (case insensitive) but NOT our current service
                 let serviceLower = service.lowercased()
-                if service != self.service && serviceLower.contains("bitchat") {
+                if service != self.service && serviceLower.contains("cybchat") {
                     shouldDelete = true
                 }
                 

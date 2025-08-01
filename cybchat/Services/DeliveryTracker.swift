@@ -64,7 +64,7 @@ class DeliveryTracker {
     
     // MARK: - Public Methods
     
-    func trackMessage(_ message: BitchatMessage, recipientID: String, recipientNickname: String, isFavorite: Bool = false, expectedRecipients: Int = 1) {
+    func trackMessage(_ message: CybchatMessage, recipientID: String, recipientNickname: String, isFavorite: Bool = false, expectedRecipients: Int = 1) {
         // Only track private messages
         guard message.isPrivate else { return }
         
@@ -136,7 +136,7 @@ class DeliveryTracker {
         pendingDeliveries.removeValue(forKey: ack.originalMessageID)
     }
     
-    func generateAck(for message: BitchatMessage, myPeerID: String, myNickname: String, hopCount: UInt8) -> DeliveryAck? {
+    func generateAck(for message: CybchatMessage, myPeerID: String, myNickname: String, hopCount: UInt8) -> DeliveryAck? {
         // Don't ACK our own messages
         guard message.senderPeerID != myPeerID else { 
             return nil 

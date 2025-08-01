@@ -1,6 +1,6 @@
 //
 // ChatViewModel.swift
-// bitchat
+// cybchat
 //
 // This is free and unencumbered software released into the public domain.
 // For more information, see <https://unlicense.org>
@@ -9,12 +9,12 @@
 ///
 /// # ChatViewModel
 ///
-/// The central business logic and state management component for BitChat.
+/// The central business logic and state management component for CybChat.
 /// Coordinates between the UI layer and the networking/encryption services.
 ///
 /// ## Overview
 /// ChatViewModel implements the MVVM pattern, serving as the binding layer between
-/// SwiftUI views and the underlying BitChat services. It manages:
+/// SwiftUI views and the underlying CybChat services. It manages:
 /// - Message state and delivery
 /// - Peer connections and presence
 /// - Private chat sessions
@@ -23,7 +23,7 @@
 ///
 /// ## Architecture
 /// The ViewModel acts as:
-/// - **BitchatDelegate**: Receives messages and events from BluetoothMeshService
+/// - **CybchatDelegate**: Receives messages and events from BluetoothMeshService
 /// - **State Manager**: Maintains all UI-relevant state with @Published properties
 /// - **Command Processor**: Handles IRC-style commands (/msg, /who, etc.)
 /// - **Message Router**: Directs messages to appropriate chats (public/private)
@@ -86,23 +86,23 @@ import CommonCrypto
 import UIKit
 #endif
 
-/// Manages the application state and business logic for BitChat.
+/// Manages the application state and business logic for CybChat.
 /// Acts as the primary coordinator between UI components and backend services,
-/// implementing the BitchatDelegate protocol to handle network events.
-class ChatViewModel: ObservableObject, BitchatDelegate {
+/// implementing the CybchatDelegate protocol to handle network events.
+class ChatViewModel: ObservableObject, CybchatDelegate {
     // MARK: - Published Properties
     
-    @Published var messages: [BitchatMessage] = []
+    @Published var messages: [CybchatMessage] = []
     private let maxMessages = 1337 // Maximum messages before oldest are removed
     @Published var connectedPeers: [String] = []
-    @Published var allPeers: [BitchatPeer] = []  // Unified peer list including favorites
-    private var peerIndex: [String: BitchatPeer] = [:] // Quick lookup by peer ID
+    @Published var allPeers: [CybchatPeer] = []  // Unified peer list including favorites
+    private var peerIndex: [String: CybchatPeer] = [:] // Quick lookup by peer ID
     
     // MARK: - Message Batching Properties
     
     // Message batching for performance
-    private var pendingMessages: [BitchatMessage] = []
-    private var pendingPrivateMessages: [String: [BitchatMessage]] = [:] // peerID -> messages
+    private var pendingMessages: [CybchatMessage] = []
+    private var pendingPrivateMessages: [String: [CybchatMessage]] = [:] // peerID -> messages
     private var messageBatchTimer: Timer?
     private let messageBatchInterval: TimeInterval = 0.1 // 100ms batching window
     
@@ -120,7 +120,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
         }
     }
     @Published var isConnected = false
-    @Published var privateChats: [String: [BitchatMessage]] = [:] // peerID -> messages
+    @Published var privateChats: [String: [CybchatMessage]] = [:] // peerID -> messages
     @Published var selectedPrivateChatPeer: String? = nil
     private var selectedPrivateChatFingerprint: String? = nil  // Track by fingerprint for persistence across reconnections
     @Published var unreadPrivateMessages: Set<String> = []
@@ -661,7 +661,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
     
     // MARK: - Message Sending
     
-    /// Sends a message through the BitChat network.
+    /// Sends a message through the CybChat network.
     /// - Parameter content: The message content to send
     /// - Note: Automatically handles command processing if content starts with '/'
     ///         Routes to private chat if one is selected, otherwise broadcasts
@@ -691,7 +691,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
             let mentions = parseMentions(from: content)
             
             // Add message to local display
-            let message = BitchatMessage(
+            let message = CybchatMessage(
                 sender: nickname,
                 content: content,
                 timestamp: Date(),
@@ -742,7 +742,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
         
         // Check if the recipient is blocked
         if isPeerBlocked(peerID) {
-            let systemMessage = BitchatMessage(
+            let systemMessage = CybchatMessage(
                 sender: "system",
                 content: "cannot send message to \(recipientNickname): user is blocked.",
                 timestamp: Date(),
@@ -757,7 +757,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
         markPrivateMessagesAsRead(from: peerID)
         
         // Create the message locally
-        let message = BitchatMessage(
+        let message = CybchatMessage(
             sender: nickname,
             content: content,
             timestamp: Date(),
@@ -810,7 +810,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                             category: SecureLogger.session, level: .warning)
             
             // Add system message to inform user
-            let systemMessage = BitchatMessage(
+            let systemMessage = CybchatMessage(
                 sender: "system",
                 content: "Cannot send message to \(recipientNickname) - peer is not reachable via mesh or Nostr.",
                 timestamp: Date(),
@@ -841,7 +841,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
         
         // Check if the peer is blocked
         if isPeerBlocked(peerID) {
-            let systemMessage = BitchatMessage(
+            let systemMessage = CybchatMessage(
                 sender: "system",
                 content: "cannot start chat with \(peerNickname): user is blocked.",
                 timestamp: Date(),
@@ -855,7 +855,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
         // Only require mutual favorites for offline Nostr messaging
         if let peer = peerIndex[peerID],
            peer.isFavorite && !peer.theyFavoritedUs && !peer.isConnected && !peer.isRelayConnected {
-            let systemMessage = BitchatMessage(
+            let systemMessage = CybchatMessage(
                 sender: "system",
                 content: "cannot start chat with \(peerNickname): mutual favorite required for offline messaging.",
                 timestamp: Date(),
@@ -888,7 +888,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
             let currentFingerprint = getFingerprint(for: peerID)
             
             // Look for messages under other peer IDs with the same fingerprint
-            var migratedMessages: [BitchatMessage] = []
+            var migratedMessages: [CybchatMessage] = []
             var oldPeerIDsToRemove: [String] = []
             
             for (oldPeerID, messages) in privateChats {
@@ -1000,7 +1000,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
     // MARK: - Nostr Message Handling
     
     @objc private func handleNostrMessage(_ notification: Notification) {
-        guard let message = notification.userInfo?["message"] as? BitchatMessage else { return }
+        guard let message = notification.userInfo?["message"] as? CybchatMessage else { return }
         
         // Store the Nostr pubkey if provided (for messages from unknown senders)
         if let nostrPubkey = notification.userInfo?["nostrPubkey"] as? String,
@@ -1138,7 +1138,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                 }
                 
                 // Create system message
-                let systemMessage = BitchatMessage(
+                let systemMessage = CybchatMessage(
                     id: UUID().uuidString,
                 sender: "System",
                 content: "\(peerNickname) \(action) you",
@@ -1196,7 +1196,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
             }
             
             // Show local notification immediately as system message
-            let localNotification = BitchatMessage(
+            let localNotification = CybchatMessage(
                 sender: "system",
                 content: "you took a screenshot",
                 timestamp: Date(),
@@ -1217,7 +1217,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
             meshService.sendMessage(screenshotMessage, mentions: [])
             
             // Show local notification immediately as system message
-            let localNotification = BitchatMessage(
+            let localNotification = CybchatMessage(
                 sender: "system",
                 content: "you took a screenshot",
                 timestamp: Date(),
@@ -1469,7 +1469,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
         
     }
     
-    func getPrivateChatMessages(for peerID: String) -> [BitchatMessage] {
+    func getPrivateChatMessages(for peerID: String) -> [CybchatMessage] {
         let messages = privateChats[peerID] ?? []
         if !messages.isEmpty {
         }
@@ -1662,7 +1662,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
     
     // MARK: - Message Formatting
     
-    func getSenderColor(for message: BitchatMessage, colorScheme: ColorScheme) -> Color {
+    func getSenderColor(for message: CybchatMessage, colorScheme: ColorScheme) -> Color {
         let isDark = colorScheme == .dark
         let primaryColor = isDark ? Color.green : Color(red: 0, green: 0.5, blue: 0)
         
@@ -1670,7 +1670,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
     }
     
     
-    func formatMessageContent(_ message: BitchatMessage, colorScheme: ColorScheme) -> AttributedString {
+    func formatMessageContent(_ message: CybchatMessage, colorScheme: ColorScheme) -> AttributedString {
         let isDark = colorScheme == .dark
         let contentText = message.content
         var processedContent = AttributedString()
@@ -1739,7 +1739,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
         return processedContent
     }
     
-    func formatMessageAsText(_ message: BitchatMessage, colorScheme: ColorScheme) -> AttributedString {
+    func formatMessageAsText(_ message: CybchatMessage, colorScheme: ColorScheme) -> AttributedString {
         // Check cache first
         let isDark = colorScheme == .dark
         if let cachedText = message.getCachedFormattedText(isDark: isDark) {
@@ -1864,7 +1864,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
         return result
     }
     
-    func formatMessage(_ message: BitchatMessage, colorScheme: ColorScheme) -> AttributedString {
+    func formatMessage(_ message: CybchatMessage, colorScheme: ColorScheme) -> AttributedString {
         var result = AttributedString()
         
         let isDark = colorScheme == .dark
@@ -2097,12 +2097,12 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
         }
     }
     
-    private func addMessageToBatch(_ message: BitchatMessage) {
+    private func addMessageToBatch(_ message: CybchatMessage) {
         pendingMessages.append(message)
         scheduleBatchFlush()
     }
     
-    private func addPrivateMessageToBatch(_ message: BitchatMessage, for peerID: String) {
+    private func addPrivateMessageToBatch(_ message: CybchatMessage, for peerID: String) {
         if pendingPrivateMessages[peerID] == nil {
             pendingPrivateMessages[peerID] = []
         }
@@ -2248,7 +2248,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
     
     // MARK: - Peer Lookup Helpers
     
-    func getPeer(byID peerID: String) -> BitchatPeer? {
+    func getPeer(byID peerID: String) -> CybchatPeer? {
         return peerIndex[peerID]
     }
     
@@ -2383,7 +2383,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
         }
     }
     
-    // MARK: - BitchatDelegate Methods
+    // MARK: - CybchatDelegate Methods
     
     // MARK: - Command Handling
     
@@ -2411,7 +2411,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                         let messageContent = parts[2...].joined(separator: " ")
                         sendPrivateMessage(messageContent, to: peerID)
                     } else {
-                        let systemMessage = BitchatMessage(
+                        let systemMessage = CybchatMessage(
                             sender: "system",
                             content: "started private chat with \(nickname)",
                             timestamp: Date(),
@@ -2420,7 +2420,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                         messages.append(systemMessage)
                     }
                 } else {
-                    let systemMessage = BitchatMessage(
+                    let systemMessage = CybchatMessage(
                         sender: "system",
                         content: "user '\(nickname)' not found. they may be offline or using a different nickname.",
                         timestamp: Date(),
@@ -2429,7 +2429,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                     messages.append(systemMessage)
                 }
             } else {
-                let systemMessage = BitchatMessage(
+                let systemMessage = CybchatMessage(
                     sender: "system",
                     content: "usage: /m @nickname [message] or /m nickname [message]",
                     timestamp: Date(),
@@ -2440,7 +2440,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
         case "/w":
             let peerNicknames = meshService.getPeerNicknames()
             if connectedPeers.isEmpty {
-                let systemMessage = BitchatMessage(
+                let systemMessage = CybchatMessage(
                     sender: "system",
                     content: "no one else is online right now.",
                     timestamp: Date(),
@@ -2452,7 +2452,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                     peerNicknames[peerID]
                 }.sorted().joined(separator: ", ")
                 
-                let systemMessage = BitchatMessage(
+                let systemMessage = CybchatMessage(
                     sender: "system",
                     content: "online users: \(onlineList)",
                     timestamp: Date(),
@@ -2478,7 +2478,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                 // Check if target exists in connected peers
                 if let targetPeerID = getPeerIDForNickname(nickname) {
                     // Create hug message
-                    let hugMessage = BitchatMessage(
+                    let hugMessage = CybchatMessage(
                         sender: "system",
                         content: "🫂 \(self.nickname) hugs \(nickname)",
                         timestamp: Date(),
@@ -2501,7 +2501,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                         messages.append(hugMessage)
                     }
                 } else {
-                    let errorMessage = BitchatMessage(
+                    let errorMessage = CybchatMessage(
                         sender: "system",
                         content: "cannot hug \(nickname): user not found.",
                         timestamp: Date(),
@@ -2510,7 +2510,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                     messages.append(errorMessage)
                 }
             } else {
-                let usageMessage = BitchatMessage(
+                let usageMessage = CybchatMessage(
                     sender: "system",
                     content: "usage: /hug <nickname>",
                     timestamp: Date(),
@@ -2528,7 +2528,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                 // Check if target exists in connected peers
                 if let targetPeerID = getPeerIDForNickname(nickname) {
                     // Create slap message
-                    let slapMessage = BitchatMessage(
+                    let slapMessage = CybchatMessage(
                         sender: "system",
                         content: "🐟 \(self.nickname) slaps \(nickname) around a bit with a large trout",
                         timestamp: Date(),
@@ -2551,7 +2551,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                         messages.append(slapMessage)
                     }
                 } else {
-                    let errorMessage = BitchatMessage(
+                    let errorMessage = CybchatMessage(
                         sender: "system",
                         content: "cannot slap \(nickname): user not found.",
                         timestamp: Date(),
@@ -2560,7 +2560,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                     messages.append(errorMessage)
                 }
             } else {
-                let usageMessage = BitchatMessage(
+                let usageMessage = CybchatMessage(
                     sender: "system",
                     content: "usage: /slap <nickname>",
                     timestamp: Date(),
@@ -2581,7 +2581,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                     if let fingerprintStr = meshService.getPeerFingerprint(peerID) {
                         
                         if SecureIdentityStateManager.shared.isBlocked(fingerprint: fingerprintStr) {
-                            let systemMessage = BitchatMessage(
+                            let systemMessage = CybchatMessage(
                                 sender: "system",
                                 content: "\(nickname) is already blocked.",
                                 timestamp: Date(),
@@ -2611,7 +2611,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                             blockedUsers.insert(fingerprintStr)
                             favoritePeers.remove(fingerprintStr)
                             
-                            let systemMessage = BitchatMessage(
+                            let systemMessage = CybchatMessage(
                                 sender: "system",
                                 content: "blocked \(nickname). you will no longer receive messages from them.",
                                 timestamp: Date(),
@@ -2620,7 +2620,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                             messages.append(systemMessage)
                         }
                     } else {
-                        let systemMessage = BitchatMessage(
+                        let systemMessage = CybchatMessage(
                             sender: "system",
                             content: "cannot block \(nickname): unable to verify identity.",
                             timestamp: Date(),
@@ -2629,7 +2629,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                         messages.append(systemMessage)
                     }
                 } else {
-                    let systemMessage = BitchatMessage(
+                    let systemMessage = CybchatMessage(
                         sender: "system",
                         content: "cannot block \(nickname): user not found.",
                         timestamp: Date(),
@@ -2640,7 +2640,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
             } else {
                 // List blocked users
                 if blockedUsers.isEmpty {
-                    let systemMessage = BitchatMessage(
+                    let systemMessage = CybchatMessage(
                         sender: "system",
                         content: "no blocked peers.",
                         timestamp: Date(),
@@ -2661,7 +2661,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                     }
                     
                     let blockedList = blockedNicknames.isEmpty ? "blocked peers (not currently online)" : blockedNicknames.sorted().joined(separator: ", ")
-                    let systemMessage = BitchatMessage(
+                    let systemMessage = CybchatMessage(
                         sender: "system",
                         content: "blocked peers: \(blockedList)",
                         timestamp: Date(),
@@ -2689,7 +2689,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                             // Update local set for UI
                             blockedUsers.remove(fingerprintStr)
                             
-                            let systemMessage = BitchatMessage(
+                            let systemMessage = CybchatMessage(
                                 sender: "system",
                                 content: "unblocked \(nickname).",
                                 timestamp: Date(),
@@ -2697,7 +2697,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                             )
                             messages.append(systemMessage)
                         } else {
-                            let systemMessage = BitchatMessage(
+                            let systemMessage = CybchatMessage(
                                 sender: "system",
                                 content: "\(nickname) is not blocked.",
                                 timestamp: Date(),
@@ -2706,7 +2706,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                             messages.append(systemMessage)
                         }
                     } else {
-                        let systemMessage = BitchatMessage(
+                        let systemMessage = CybchatMessage(
                             sender: "system",
                             content: "cannot unblock \(nickname): unable to verify identity.",
                             timestamp: Date(),
@@ -2715,7 +2715,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                         messages.append(systemMessage)
                     }
                 } else {
-                    let systemMessage = BitchatMessage(
+                    let systemMessage = CybchatMessage(
                         sender: "system",
                         content: "cannot unblock \(nickname): user not found.",
                         timestamp: Date(),
@@ -2724,7 +2724,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                     messages.append(systemMessage)
                 }
             } else {
-                let systemMessage = BitchatMessage(
+                let systemMessage = CybchatMessage(
                     sender: "system",
                     content: "usage: /unblock <nickname>",
                     timestamp: Date(),
@@ -2759,7 +2759,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                             try? await self?.messageRouter?.sendFavoriteNotification(to: noisePublicKey, isFavorite: true)
                         }
                         
-                        let systemMessage = BitchatMessage(
+                        let systemMessage = CybchatMessage(
                             sender: "system",
                             content: "added \(nickname) to favorites.",
                             timestamp: Date(),
@@ -2768,7 +2768,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                         messages.append(systemMessage)
                     }
                 } else {
-                    let systemMessage = BitchatMessage(
+                    let systemMessage = CybchatMessage(
                         sender: "system",
                         content: "can't find peer: \(nickname)",
                         timestamp: Date(),
@@ -2777,7 +2777,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                     messages.append(systemMessage)
                 }
             } else {
-                let systemMessage = BitchatMessage(
+                let systemMessage = CybchatMessage(
                     sender: "system",
                     content: "usage: /fav <nickname>",
                     timestamp: Date(),
@@ -2806,7 +2806,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                             try? await self?.messageRouter?.sendFavoriteNotification(to: noisePublicKey, isFavorite: false)
                         }
                         
-                        let systemMessage = BitchatMessage(
+                        let systemMessage = CybchatMessage(
                             sender: "system",
                             content: "removed \(nickname) from favorites.",
                             timestamp: Date(),
@@ -2815,7 +2815,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                         messages.append(systemMessage)
                     }
                 } else {
-                    let systemMessage = BitchatMessage(
+                    let systemMessage = CybchatMessage(
                         sender: "system",
                         content: "can't find peer: \(nickname)",
                         timestamp: Date(),
@@ -2824,7 +2824,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                     messages.append(systemMessage)
                 }
             } else {
-                let systemMessage = BitchatMessage(
+                let systemMessage = CybchatMessage(
                     sender: "system",
                     content: "usage: /unfav <nickname>",
                     timestamp: Date(),
@@ -2834,7 +2834,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
             }
             
         case "/testnostr":
-            let systemMessage = BitchatMessage(
+            let systemMessage = CybchatMessage(
                 sender: "system",
                 content: "testing nostr relay connectivity...",
                 timestamp: Date(),
@@ -2856,7 +2856,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                         "failed to connect to nostr relays - check console for details"
                     }
                     
-                    let completeMessage = BitchatMessage(
+                    let completeMessage = CybchatMessage(
                         sender: "system",
                         content: statusMessage,
                         timestamp: Date(),
@@ -2864,7 +2864,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                     )
                     self.messages.append(completeMessage)
                 } else {
-                    let errorMessage = BitchatMessage(
+                    let errorMessage = CybchatMessage(
                         sender: "system",
                         content: "nostr relay manager not initialized",
                         timestamp: Date(),
@@ -2876,7 +2876,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
             
         default:
             // Unknown command
-            let systemMessage = BitchatMessage(
+            let systemMessage = CybchatMessage(
                 sender: "system",
                 content: "unknown command: \(cmd).",
                 timestamp: Date(),
@@ -2890,7 +2890,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
     
     func handleHandshakeRequest(from peerID: String, nickname: String, pendingCount: UInt8) {
         // Create a notification message
-        let notificationMessage = BitchatMessage(
+        let notificationMessage = CybchatMessage(
             sender: "system",
             content: "📨 \(nickname) wants to send you \(pendingCount) message\(pendingCount == 1 ? "" : "s"). Open the conversation to receive.",
             timestamp: Date(),
@@ -2926,7 +2926,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
         }
     }
     
-    func didReceiveMessage(_ message: BitchatMessage) {
+    func didReceiveMessage(_ message: CybchatMessage) {
         
         
         // Check if sender is blocked (for both private and public messages)
@@ -2957,7 +2957,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                 
                 if privateChats[peerID] == nil || privateChats[peerID]?.isEmpty == true {
                     // Check if we have messages under a different peer ID with same fingerprint
-                    var migratedMessages: [BitchatMessage] = []
+                    var migratedMessages: [CybchatMessage] = []
                     var oldPeerIDsToRemove: [String] = []
                     
                     for (oldPeerID, messages) in privateChats {
@@ -3024,7 +3024,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                 
                 if isActionMessage {
                     // Convert to system message
-                    messageToStore = BitchatMessage(
+                    messageToStore = CybchatMessage(
                         id: messageToStore.id,
                         sender: "system",
                         content: String(messageToStore.content.dropFirst(2).dropLast(2)), // Remove * * wrapper
@@ -3147,10 +3147,10 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
                                   (message.content.contains("🫂") || message.content.contains("🐟") || 
                                    message.content.contains("took a screenshot"))
             
-            let finalMessage: BitchatMessage
+            let finalMessage: CybchatMessage
             if isActionMessage {
                 // Convert to system message
-                finalMessage = BitchatMessage(
+                finalMessage = CybchatMessage(
                     sender: "system",
                     content: String(message.content.dropFirst(2).dropLast(2)), // Remove * * wrapper
                     timestamp: message.timestamp,
@@ -3317,7 +3317,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
         // Ensure we have a valid display name
         let finalDisplayName = displayName.isEmpty ? "peer" : displayName
         
-        let systemMessage = BitchatMessage(
+        let systemMessage = CybchatMessage(
             sender: "system",
             content: "\(finalDisplayName) connected",
             timestamp: Date(),
@@ -3349,7 +3349,7 @@ class ChatViewModel: ObservableObject, BitchatDelegate {
         // Ensure we have a valid display name
         let finalDisplayName = displayName.isEmpty ? "peer" : displayName
         
-        let systemMessage = BitchatMessage(
+        let systemMessage = CybchatMessage(
             sender: "system",
             content: "\(finalDisplayName) disconnected",
             timestamp: Date(),

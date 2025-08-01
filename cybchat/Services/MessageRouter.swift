@@ -393,8 +393,8 @@ class MessageRouter: ObservableObject {
             }
         }
         
-        // Create a BitchatMessage and inject into the stream
-        let chatMessage = BitchatMessage(
+        // Create a CybchatMessage and inject into the stream
+        let chatMessage = CybchatMessage(
             id: messageId,
             sender: favoritesService.getFavoriteStatus(for: senderNoiseKey)?.peerNickname ?? "Unknown",
             content: messageContent,

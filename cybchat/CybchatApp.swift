@@ -90,7 +90,7 @@ struct CybchatApp: App {
             // Show notification about shared content
             DispatchQueue.main.async {
                 // Add system message about sharing
-                let systemMessage = BitchatMessage(
+                let systemMessage = CybchatMessage(
                     sender: "system",
                     content: "preparing to share \(contentType)...",
                     timestamp: Date(),

@@ -10,10 +10,10 @@
 /// # BluetoothMeshService
 ///
 /// The core networking component that manages peer-to-peer Bluetooth LE connections
-/// and implements the BitChat mesh networking protocol.
+/// and implements the CybChat mesh networking protocol.
 ///
 /// ## Overview
-/// This service is the heart of BitChat's decentralized architecture. It manages all
+/// This service is the heart of CybChat's decentralized architecture. It manages all
 /// Bluetooth LE communications, enabling devices to form an ad-hoc mesh network without
 /// any infrastructure. The service handles:
 /// - Peer discovery and connection management
@@ -24,7 +24,7 @@
 ///
 /// ## Architecture
 /// The service operates in a dual mode:
-/// - **Central Mode**: Scans for and connects to other BitChat devices
+/// - **Central Mode**: Scans for and connects to other CybChat devices
 /// - **Peripheral Mode**: Advertises its presence and accepts connections
 ///
 /// This dual-mode operation enables true peer-to-peer connectivity where any device
@@ -65,7 +65,7 @@
 /// ## Error Handling
 /// - Automatic reconnection for lost connections
 /// - Graceful degradation when Bluetooth is unavailable
-/// - Clear error reporting through BitchatDelegate
+/// - Clear error reporting through CybchatDelegate
 ///
 /// ## Usage Example
 /// ```swift
@@ -134,7 +134,7 @@ enum PeerConnectionState: CustomStringConvertible {
     }
 }
 
-/// Manages all Bluetooth LE networking operations for the BitChat mesh network.
+/// Manages all Bluetooth LE networking operations for the CybChat mesh network.
 /// This class handles peer discovery, connection management, message routing,
 /// and protocol negotiation. It acts as both a BLE central (scanner) and
 /// peripheral (advertiser) simultaneously to enable true peer-to-peer connectivity.
@@ -309,7 +309,7 @@ class BluetoothMeshService: NSObject {
     
     // MARK: - Delegates and Services
     
-    weak var delegate: BitchatDelegate?
+    weak var delegate: CybchatDelegate?
     private let noiseService = NoiseEncryptionService()
     private let handshakeCoordinator = NoiseHandshakeCoordinator()
     
@@ -571,7 +571,7 @@ class BluetoothMeshService: NSObject {
     
     // Store-and-forward message cache
     private struct StoredMessage {
-        let packet: BitchatPacket
+        let packet: CybchatPacket
         let timestamp: Date
         let messageID: String
         let isForFavorite: Bool  // Messages for favorites stored indefinitely
@@ -641,7 +641,7 @@ class BluetoothMeshService: NSObject {
     // MARK: - Protocol ACK Tracking
     
     // Protocol-level ACK tracking
-    private var pendingAcks: [String: (packet: BitchatPacket, timestamp: Date, retries: Int)] = [:]
+    private var pendingAcks: [String: (packet: CybchatPacket, timestamp: Date, retries: Int)] = [:]
     private let ackTimeout: TimeInterval = 5.0  // 5 seconds to receive ACK
     private let maxAckRetries = 3
     private var ackTimer: Timer?
@@ -754,7 +754,7 @@ class BluetoothMeshService: NSObject {
     // MARK: - Message Aggregation
     
     // Message aggregation
-    private var pendingMessages: [(message: BitchatPacket, destination: String?)] = []
+    private var pendingMessages: [(message: CybchatPacket, destination: String?)] = []
     private var aggregationTimer: Timer?
     private var aggregationWindow: TimeInterval = 0.1  // 100ms window
     private let maxAggregatedMessages = 5
@@ -907,7 +907,7 @@ class BluetoothMeshService: NSObject {
             guard let self = self else { return }
             
             // Group messages by destination
-            var messagesByDestination: [String?: [BitchatPacket]] = [:]
+            var messagesByDestination: [String?: [CybchatPacket]] = [:]
             
             for (message, destination) in self.pendingMessages {
                 if messagesByDestination[destination] == nil {
@@ -1935,7 +1935,7 @@ class BluetoothMeshService: NSObject {
             return
         }
         
-        let announcePacket = BitchatPacket(
+        let announcePacket = CybchatPacket(
             type: MessageType.announce.rawValue,
             ttl: 3,  // Increase TTL so announce reaches all peers
             senderID: myPeerID,
@@ -2067,7 +2067,7 @@ class BluetoothMeshService: NSObject {
             let nickname = self.delegate as? ChatViewModel
             let senderNick = nickname?.nickname ?? self.myPeerID
             
-            let message = BitchatMessage(
+            let message = CybchatMessage(
                 id: messageID,
                 sender: senderNick,
                 content: content,
@@ -2084,7 +2084,7 @@ class BluetoothMeshService: NSObject {
                 
                 
                 // Use unified message type with broadcast recipient
-                let packet = BitchatPacket(
+                let packet = CybchatPacket(
                     type: MessageType.message.rawValue,
                     senderID: Data(hexString: self.myPeerID) ?? Data(),
                     recipientID: SpecialRecipients.broadcast,  // Special broadcast ID
@@ -2178,7 +2178,7 @@ class BluetoothMeshService: NSObject {
                     let encryptedPayload = try noiseService.encrypt(ackPayload, for: recipientID)
                     
                     // Create outer Noise packet with the encrypted payload
-                    let outerPacket = BitchatPacket(
+                    let outerPacket = CybchatPacket(
                         type: MessageType.noiseEncrypted.rawValue,
                         senderID: Data(hexString: self.myPeerID) ?? Data(),
                         recipientID: Data(hexString: recipientID) ?? Data(),
@@ -2255,7 +2255,7 @@ class BluetoothMeshService: NSObject {
                     let encryptedPayload = try noiseService.encrypt(receiptPayload, for: recipientID)
                     
                     // Create outer Noise packet with the encrypted payload
-                    let outerPacket = BitchatPacket(
+                    let outerPacket = CybchatPacket(
                         type: MessageType.noiseEncrypted.rawValue,
                         senderID: Data(hexString: self.myPeerID) ?? Data(),
                         recipientID: Data(hexString: recipientID) ?? Data(),
@@ -2323,7 +2323,7 @@ class BluetoothMeshService: NSObject {
         // Always send announce, don't check if already announced
         // This ensures peers get our nickname even if they reconnect
         
-        let packet = BitchatPacket(
+        let packet = CybchatPacket(
             type: MessageType.announce.rawValue,
             ttl: 3,  // Allow relay for better reach
             senderID: myPeerID,
@@ -2362,7 +2362,7 @@ class BluetoothMeshService: NSObject {
     private func sendLeaveAnnouncement() {
         guard let vm = delegate as? ChatViewModel else { return }
         
-        let packet = BitchatPacket(
+        let packet = CybchatPacket(
             type: MessageType.leave.rawValue,
             ttl: 1,  // Don't relay leave messages
             senderID: myPeerID,
@@ -2839,7 +2839,7 @@ class BluetoothMeshService: NSObject {
     
     // MARK: - Store-and-Forward Methods
     
-    private func cacheMessage(_ packet: BitchatPacket, messageID: String) {
+    private func cacheMessage(_ packet: CybchatPacket, messageID: String) {
         messageQueue.async(flags: .barrier) { [weak self] in
             guard let self = self else { return }
             
@@ -3019,7 +3019,7 @@ class BluetoothMeshService: NSObject {
     }
     
     
-    private func broadcastPacket(_ packet: BitchatPacket) {
+    private func broadcastPacket(_ packet: CybchatPacket) {
         // CRITICAL CHECK: Never send unencrypted JSON
         if packet.type == MessageType.deliveryAck.rawValue {
             // Check if payload looks like JSON
@@ -3035,7 +3035,7 @@ class BluetoothMeshService: NSObject {
             let senderID = packet.senderID.hexEncodedString()
             if senderID == self.myPeerID,
                packet.type == MessageType.message.rawValue,
-               let message = BitchatMessage.fromBinaryPayload(packet.payload) {
+                               let message = CybchatMessage.fromBinaryPayload(packet.payload) {
                 MessageRetryService.shared.addMessageForRetry(
                     content: message.content,
                     mentions: message.mentions,
@@ -3114,7 +3114,7 @@ class BluetoothMeshService: NSObject {
             if senderID == self.myPeerID {
                 // This is our own message that failed to send
                 if packet.type == MessageType.message.rawValue,
-                   let message = BitchatMessage.fromBinaryPayload(packet.payload) {
+                   let message = CybchatMessage.fromBinaryPayload(packet.payload) {
                     MessageRetryService.shared.addMessageForRetry(
                         content: message.content,
                         mentions: message.mentions,
@@ -3129,7 +3129,7 @@ class BluetoothMeshService: NSObject {
         }
     }
     
-    private func handleReceivedPacket(_ packet: BitchatPacket, from peerID: String, peripheral: CBPeripheral? = nil) {
+    private func handleReceivedPacket(_ packet: CybchatPacket, from peerID: String, peripheral: CBPeripheral? = nil) {
         messageQueue.async(flags: .barrier) { [weak self] in
             guard let self = self else { return }
             
@@ -3378,7 +3378,7 @@ class BluetoothMeshService: NSObject {
                     // No signature verification - broadcasts are not authenticated
                     
                     // Parse broadcast message (not encrypted)
-                    if let message = BitchatMessage.fromBinaryPayload(packet.payload) {
+                    if let message = CybchatMessage.fromBinaryPayload(packet.payload) {
                             
                         // Store nickname mapping
                         collectionsQueue.sync(flags: .barrier) {
@@ -3393,7 +3393,7 @@ class BluetoothMeshService: NSObject {
                         
                         let finalContent = message.content
                         
-                        let messageWithPeerID = BitchatMessage(
+                        let messageWithPeerID = CybchatMessage(
                             id: message.id,  // Preserve the original message ID
                             sender: message.sender,
                             content: finalContent,
@@ -3452,7 +3452,7 @@ class BluetoothMeshService: NSObject {
                     let decryptedPayload = packet.payload
                     
                     // Parse the message
-                    if let message = BitchatMessage.fromBinaryPayload(decryptedPayload) {
+                    if let message = CybchatMessage.fromBinaryPayload(decryptedPayload) {
                         
                         // Check if this is a dummy message for cover traffic
                         if message.content.hasPrefix(self.coverTrafficPrefix) {
@@ -3484,7 +3484,7 @@ class BluetoothMeshService: NSObject {
                                     }
                                     
                                     // Send system message to user
-                                    let systemMessage = BitchatMessage(
+                                    let systemMessage = CybchatMessage(
                                         sender: "system",
                                         content: "\(nickname) \(action) you.",
                                         timestamp: Date(),
@@ -3526,7 +3526,7 @@ class BluetoothMeshService: NSObject {
                             }
                         }
                         
-                        let messageWithPeerID = BitchatMessage(
+                        let messageWithPeerID = CybchatMessage(
                             id: message.id,  // Preserve the original message ID
                             sender: message.sender,
                             content: message.content,
@@ -4553,7 +4553,7 @@ class BluetoothMeshService: NSObject {
         }
     }
     
-    private func sendFragmentedPacket(_ packet: BitchatPacket) {
+    private func sendFragmentedPacket(_ packet: CybchatPacket) {
         guard let fullData = packet.toBinaryData() else { return }
         
         // Generate a fixed 8-byte fragment ID
@@ -4593,7 +4593,7 @@ class BluetoothMeshService: NSObject {
                 fragmentType = .fragmentContinue
             }
             
-            let fragmentPacket = BitchatPacket(
+            let fragmentPacket = CybchatPacket(
                 type: fragmentType.rawValue,
                 senderID: packet.senderID,  // Use original packet's senderID (already Data)
                 recipientID: packet.recipientID,  // Preserve recipient if any
@@ -4614,7 +4614,7 @@ class BluetoothMeshService: NSObject {
         let _ = Double(fragments.count - 1) * delayBetweenFragments
     }
     
-    private func handleFragment(_ packet: BitchatPacket, from peerID: String) {
+    private func handleFragment(_ packet: CybchatPacket, from peerID: String) {
         // Handling fragment
         
         guard packet.payload.count >= 13 else { 
@@ -4705,7 +4705,7 @@ class BluetoothMeshService: NSObject {
             // Successfully reassembled fragments
             
             // Parse and handle the reassembled packet
-            if let reassembledPacket = BitchatPacket.from(reassembledData) {
+            if let reassembledPacket = CybchatPacket.from(reassembledData) {
                 // Clean up
                 incomingFragments.removeValue(forKey: fragmentID)
                 fragmentMetadata.removeValue(forKey: fragmentID)
@@ -5205,7 +5205,7 @@ extension BluetoothMeshService: CBPeripheralDelegate {
                     // Send single announce with slight delay
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
                         guard let self = self else { return }
-                        let announcePacket = BitchatPacket(
+                        let announcePacket = CybchatPacket(
                             type: MessageType.announce.rawValue,
                             ttl: 3,
                             senderID: self.myPeerID,
@@ -5220,7 +5220,7 @@ extension BluetoothMeshService: CBPeripheralDelegate {
                               peripheral.state == .connected,
                               let characteristic = peripheral.services?.first(where: { $0.uuid == BluetoothMeshService.serviceUUID })?.characteristics?.first(where: { $0.uuid == BluetoothMeshService.characteristicUUID }) else { return }
                         
-                        let announcePacket = BitchatPacket(
+                        let announcePacket = CybchatPacket(
                             type: MessageType.announce.rawValue,
                             ttl: 3,
                             senderID: self.myPeerID,
@@ -5243,7 +5243,7 @@ extension BluetoothMeshService: CBPeripheralDelegate {
         updatePeripheralActivity(peripheral.identifier.uuidString)
         
         
-        guard let packet = BitchatPacket.from(data) else { 
+        guard let packet = CybchatPacket.from(data) else { 
             return 
         }
         
@@ -5323,7 +5323,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
         for request in requests {
             if let data = request.value {
                         
-                if let packet = BitchatPacket.from(data) {
+                if let packet = CybchatPacket.from(data) {
                     
                     // Log specific Noise packet types
                     switch packet.type {
@@ -5585,7 +5585,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
     
     // MARK: - Relay Cancellation
     
-    private func scheduleRelay(_ packet: BitchatPacket, messageID: String, delay: TimeInterval) {
+    private func scheduleRelay(_ packet: CybchatPacket, messageID: String, delay: TimeInterval) {
         pendingRelaysLock.lock()
         defer { pendingRelaysLock.unlock() }
         
@@ -6085,7 +6085,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
                 let encrypted = try self.noiseService.encrypt(pingData, for: peerID)
                 
                 // Create a validation packet (won't be displayed to user)
-                let packet = BitchatPacket(
+                let packet = CybchatPacket(
                     type: MessageType.systemValidation.rawValue,
                     senderID: Data(hexString: self.myPeerID) ?? Data(),
                     recipientID: Data(hexString: peerID),
@@ -6227,7 +6227,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
             SecureLogger.logHandshake("initiated", peerID: peerID, success: true)
             
             // Send handshake initiation
-            let packet = BitchatPacket(
+            let packet = CybchatPacket(
                 type: MessageType.noiseHandshakeInit.rawValue,
                 senderID: Data(hexString: myPeerID) ?? Data(),
                 recipientID: Data(hexString: peerID) ?? Data(), // Add recipient ID for targeted delivery
@@ -6305,7 +6305,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
                 // Handshake response ready to send
                 
                 // Always send responses as handshake response type
-                let packet = BitchatPacket(
+                let packet = CybchatPacket(
                     type: MessageType.noiseHandshakeResp.rawValue,
                     senderID: Data(hexString: myPeerID) ?? Data(),
                     recipientID: Data(hexString: peerID) ?? Data(), // Add recipient ID for targeted delivery
@@ -6413,7 +6413,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
         }
     }
     
-    private func handleNoiseEncryptedMessage(from peerID: String, encryptedData: Data, originalPacket: BitchatPacket, peripheral: CBPeripheral? = nil) {
+    private func handleNoiseEncryptedMessage(from peerID: String, encryptedData: Data, originalPacket: CybchatPacket, peripheral: CBPeripheral? = nil) {
         // Use noiseService directly
         
         // For Noise encrypted messages, we need to decrypt first to check the inner packet
@@ -6537,7 +6537,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
             }
             
             // Try to parse as a full inner packet (for backward compatibility and other message types)
-            if let innerPacket = BitchatPacket.from(decryptedData) {
+            if let innerPacket = CybchatPacket.from(decryptedData) {
                 // Successfully parsed inner packet
                 
                 // Process the decrypted inner packet
@@ -6811,7 +6811,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
         
         let helloData = hello.toBinaryData()
         
-        let packet = BitchatPacket(
+        let packet = CybchatPacket(
             type: MessageType.versionHello.rawValue,
             ttl: 1,  // Version negotiation is direct, no relay
             senderID: myPeerID,
@@ -6847,7 +6847,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
         
         let ackData = ack.toBinaryData()
         
-        let packet = BitchatPacket(
+        let packet = CybchatPacket(
             type: MessageType.versionAck.rawValue,
             senderID: Data(myPeerID.utf8),
             recipientID: Data(peerID.utf8),
@@ -7038,7 +7038,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
     }
     
     // Send protocol ACK for important packets
-    private func sendProtocolAck(for packet: BitchatPacket, to peerID: String, hopCount: UInt8 = 0) {
+    private func sendProtocolAck(for packet: CybchatPacket, to peerID: String, hopCount: UInt8 = 0) {
         // Generate packet ID from packet content hash
         let packetID = generatePacketID(for: packet)
         
@@ -7055,7 +7055,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
             hopCount: hopCount
         )
         
-        let ackPacket = BitchatPacket(
+        let ackPacket = CybchatPacket(
             type: MessageType.protocolAck.rawValue,
             senderID: Data(hexString: myPeerID) ?? Data(),
             recipientID: Data(hexString: peerID) ?? Data(),
@@ -7073,7 +7073,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
     }
     
     // Send protocol NACK for failed packets
-    private func sendProtocolNack(for packet: BitchatPacket, to peerID: String, reason: String, errorCode: ProtocolNack.ErrorCode) {
+    private func sendProtocolNack(for packet: CybchatPacket, to peerID: String, reason: String, errorCode: ProtocolNack.ErrorCode) {
         let packetID = generatePacketID(for: packet)
         
         let nack = ProtocolNack(
@@ -7085,7 +7085,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
             errorCode: errorCode
         )
         
-        let nackPacket = BitchatPacket(
+        let nackPacket = CybchatPacket(
             type: MessageType.protocolNack.rawValue,
             senderID: Data(hexString: myPeerID) ?? Data(),
             recipientID: Data(hexString: peerID) ?? Data(),
@@ -7103,7 +7103,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
     }
     
     // Generate unique packet ID from immutable packet fields
-    private func generatePacketID(for packet: BitchatPacket) -> String {
+    private func generatePacketID(for packet: CybchatPacket) -> String {
         // Use only immutable fields for ID generation to ensure consistency
         // across network hops (TTL changes, so can't use full packet data)
         
@@ -7136,7 +7136,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
     }
     
     // Track packets that need ACKs
-    private func trackPacketForAck(_ packet: BitchatPacket) {
+    private func trackPacketForAck(_ packet: CybchatPacket) {
         let packetID = generatePacketID(for: packet)
         
         // Debug: log packet details
@@ -7398,7 +7398,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
         // Encode the announcement
         let announcementData = announcement.toBinaryData()
         
-        let packet = BitchatPacket(
+        let packet = CybchatPacket(
             type: MessageType.noiseIdentityAnnounce.rawValue,
             senderID: Data(hexString: myPeerID) ?? Data(),
             recipientID: specificPeerID.flatMap { Data(hexString: $0) },  // Targeted or broadcast
@@ -7531,7 +7531,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
         let senderNick = nickname?.nickname ?? self.myPeerID
         
         // Create the inner message
-        let message = BitchatMessage(
+        let message = CybchatMessage(
             id: msgID,
             sender: senderNick,
             content: content,
@@ -7548,7 +7548,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
         }
         
         // Create inner packet
-        let innerPacket = BitchatPacket(
+        let innerPacket = CybchatPacket(
             type: MessageType.message.rawValue,
             senderID: Data(hexString: myPeerID) ?? Data(),
             recipientID: Data(hexString: recipientPeerID) ?? Data(),
@@ -7575,7 +7575,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
             }
             
             // Send as Noise encrypted message
-            let outerPacket = BitchatPacket(
+            let outerPacket = CybchatPacket(
                 type: MessageType.noiseEncrypted.rawValue,
                 senderID: Data(hexString: myPeerID) ?? Data(),
                 recipientID: Data(hexString: recipientPeerID) ?? Data(),
@@ -7605,7 +7605,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
     
     // MARK: - Targeted Message Delivery
     
-    private func sendDirectToRecipient(_ packet: BitchatPacket, recipientPeerID: String) -> Bool {
+    private func sendDirectToRecipient(_ packet: CybchatPacket, recipientPeerID: String) -> Bool {
         // Try to send directly to the recipient if they're connected
         if let peripheral = connectedPeripherals[recipientPeerID],
            let characteristic = peripheralCharacteristics[peripheral],
@@ -7638,7 +7638,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
         let requestData = request.toBinaryData()
         
         // Create packet for handshake request
-        let packet = BitchatPacket(type: MessageType.handshakeRequest.rawValue,
+        let packet = CybchatPacket(type: MessageType.handshakeRequest.rawValue,
                                   ttl: 6,
                                   senderID: myPeerID,
                                   payload: requestData)
@@ -7667,7 +7667,7 @@ extension BluetoothMeshService: CBPeripheralManagerDelegate {
         return Array(candidates.shuffled().prefix(maxPeers))
     }
     
-    private func sendViaSelectiveRelay(_ packet: BitchatPacket, recipientPeerID: String) {
+    private func sendViaSelectiveRelay(_ packet: CybchatPacket, recipientPeerID: String) {
         // Select best relay candidates
         let relayPeers = selectBestRelayPeers(excluding: recipientPeerID)
         

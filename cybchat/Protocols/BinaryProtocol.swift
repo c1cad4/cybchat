@@ -9,7 +9,7 @@
 ///
 /// # BinaryProtocol
 ///
-/// Low-level binary encoding and decoding for BitChat protocol messages.
+/// Low-level binary encoding and decoding for CybChat protocol messages.
 /// Optimized for Bluetooth LE's limited bandwidth and MTU constraints.
 ///
 /// ## Overview
@@ -100,8 +100,8 @@ extension Data {
     }
 }
 
-/// Implements binary encoding and decoding for BitChat protocol messages.
-/// Provides static methods for converting between BitchatPacket objects and
+/// Implements binary encoding and decoding for CybChat protocol messages.
+/// Provides static methods for converting between CybchatPacket objects and
 /// their binary wire format representation.
 /// - Note: All multi-byte values use network byte order (big-endian)
 struct BinaryProtocol {
@@ -116,8 +116,8 @@ struct BinaryProtocol {
         static let isCompressed: UInt8 = 0x04
     }
     
-    // Encode BitchatPacket to binary format
-    static func encode(_ packet: BitchatPacket) -> Data? {
+    // Encode CybchatPacket to binary format
+    static func encode(_ packet: CybchatPacket) -> Data? {
         var data = Data()
         
         
@@ -207,8 +207,8 @@ struct BinaryProtocol {
         return paddedData
     }
     
-    // Decode binary data to BitchatPacket
-    static func decode(_ data: Data) -> BitchatPacket? {
+    // Decode binary data to CybchatPacket
+    static func decode(_ data: Data) -> CybchatPacket? {
         // Remove padding first
         let unpaddedData = MessagePadding.unpad(data)
         
@@ -304,7 +304,7 @@ struct BinaryProtocol {
             signature = unpaddedData[offset..<offset+signatureSize]
         }
         
-        return BitchatPacket(
+        return CybchatPacket(
             type: type,
             senderID: senderID,
             recipientID: recipientID,
@@ -316,8 +316,8 @@ struct BinaryProtocol {
     }
 }
 
-// Binary encoding for BitchatMessage
-extension BitchatMessage {
+// Binary encoding for CybchatMessage
+extension CybchatMessage {
     func toBinaryPayload() -> Data? {
         var data = Data()
         
@@ -413,7 +413,7 @@ extension BitchatMessage {
         return data
     }
     
-    static func fromBinaryPayload(_ data: Data) -> BitchatMessage? {
+    static func fromBinaryPayload(_ data: Data) -> CybchatMessage? {
         // Create an immutable copy to prevent threading issues
         let dataCopy = Data(data)
         
@@ -533,7 +533,7 @@ extension BitchatMessage {
             }
         }
         
-        let message = BitchatMessage(
+        let message = CybchatMessage(
             id: id,
             sender: sender,
             content: content,

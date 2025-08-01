@@ -10,12 +10,12 @@
 /// # NoiseProtocol
 ///
 /// A complete implementation of the Noise Protocol Framework for end-to-end
-/// encryption in BitChat. This file contains the core cryptographic primitives
+/// encryption in CybChat. This file contains the core cryptographic primitives
 /// and handshake logic that enable secure communication between peers.
 ///
 /// ## Overview
 /// The Noise Protocol Framework is a modern cryptographic framework designed
-/// for building secure protocols. BitChat uses Noise to provide:
+/// for building secure protocols. CybChat uses Noise to provide:
 /// - Mutual authentication between peers
 /// - Forward secrecy for all messages
 /// - Protection against replay attacks

@@ -18,7 +18,7 @@ struct PeerDisplayData: Identifiable {
     let isMe: Bool
     let hasUnreadMessages: Bool
     let encryptionStatus: EncryptionStatus
-    let connectionState: BitchatPeer.ConnectionState
+    let connectionState: CybchatPeer.ConnectionState
     let isMutualFavorite: Bool
 }
 
@@ -241,7 +241,7 @@ struct ContentView: View {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 0) {
                     // Extract messages based on context (private or public chat)
-                    let messages: [BitchatMessage] = {
+                    let messages: [CybchatMessage] = {
                         if let privatePeer = privatePeer {
                             let msgs = viewModel.getPrivateChatMessages(for: privatePeer)
                             return msgs
@@ -1064,7 +1064,7 @@ struct ContentView: View {
 
 // Helper view for rendering message content with clickable hashtags
 struct MessageContentView: View {
-    let message: BitchatMessage
+    let message: CybchatMessage
     let viewModel: ChatViewModel
     let colorScheme: ColorScheme
     let isMentioned: Bool

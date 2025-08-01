@@ -2,7 +2,7 @@ import Foundation
 import CoreBluetooth
 
 /// Represents a peer in the CybChat network with all associated metadata
-struct BitchatPeer: Identifiable, Equatable {
+struct CybchatPeer: Identifiable, Equatable {
     let id: String // Hex-encoded peer ID
     let noisePublicKey: Data
     let nickname: String
@@ -93,7 +93,7 @@ struct BitchatPeer: Identifiable, Equatable {
         self.nostrPublicKey = nil
     }
     
-    static func == (lhs: BitchatPeer, rhs: BitchatPeer) -> Bool {
+    static func == (lhs: CybchatPeer, rhs: CybchatPeer) -> Bool {
         lhs.id == rhs.id
     }
 }
@@ -103,9 +103,9 @@ struct BitchatPeer: Identifiable, Equatable {
 /// Manages the collection of peers and their states
 @MainActor
 class PeerManager: ObservableObject {
-    @Published var peers: [BitchatPeer] = []
-    @Published var favorites: [BitchatPeer] = []
-    @Published var mutualFavorites: [BitchatPeer] = []
+    @Published var peers: [CybchatPeer] = []
+    @Published var favorites: [CybchatPeer] = []
+    @Published var mutualFavorites: [CybchatPeer] = []
     
     private let meshService: BluetoothMeshService
     private let favoritesService = FavoritesPersistenceService.shared
@@ -141,7 +141,7 @@ class PeerManager: ObservableObject {
         let meshPeers = meshService.getPeerNicknames()
         
         // Build peer list
-        var allPeers: [BitchatPeer] = []
+        var allPeers: [CybchatPeer] = []
         var connectedNicknames: Set<String> = []
         
         // Add connected mesh peers (only if actually connected or relay connected)
@@ -180,7 +180,7 @@ class PeerManager: ObservableObject {
                 connectedNicknames.insert(nickname)
             }
             
-            var peer = BitchatPeer(
+            var peer = CybchatPeer(
                 id: peerID,
                 noisePublicKey: noiseKey,
                 nickname: nickname,
@@ -232,7 +232,7 @@ class PeerManager: ObservableObject {
             SecureLogger.log("  - Adding offline favorite '\(favorite.peerNickname)' (key: \(favoriteKey.hexEncodedString()), ID: \(favoriteID), mutual: \(favorite.isMutual))", 
                             category: SecureLogger.session, level: .info)
             
-            var peer = BitchatPeer(
+            var peer = CybchatPeer(
                 id: favoriteID,
                 noisePublicKey: favorite.peerNoisePublicKey,
                 nickname: favorite.peerNickname,
@@ -268,8 +268,8 @@ class PeerManager: ObservableObject {
         }
         
         // Single pass to compute all subsets and counts
-        var favorites: [BitchatPeer] = []
-        var mutualFavorites: [BitchatPeer] = []
+        var favorites: [CybchatPeer] = []
+        var mutualFavorites: [CybchatPeer] = []
         var connectedCount = 0
         var offlineCount = 0
         
@@ -321,7 +321,7 @@ class PeerManager: ObservableObject {
         }
     }
     
-    func toggleFavorite(_ peer: BitchatPeer) {
+    func toggleFavorite(_ peer: CybchatPeer) {
         if peer.isFavorite {
             favoritesService.removeFavorite(peerNoisePublicKey: peer.noisePublicKey)
         } else {
