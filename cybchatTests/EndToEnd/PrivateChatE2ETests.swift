@@ -125,7 +125,7 @@ final class PrivateChatE2ETests: XCTestCase {
         
         // Setup Bob to generate ACK
         bob.packetDeliveryHandler = { packet in
-            if let message = BitchatMessage.fromBinaryPayload(packet.payload),
+            if let message = CybchatMessage.fromBinaryPayload(packet.payload),
                message.isPrivate {
                 // Generate ACK
                 if let ack = self.deliveryTracker.generateAck(
@@ -157,7 +157,7 @@ final class PrivateChatE2ETests: XCTestCase {
         }
         
         // Track the message
-        let trackedMessage = BitchatMessage(
+        let trackedMessage = CybchatMessage(
             id: messageID,
             sender: TestConstants.testNickname1,
             content: TestConstants.testMessage1,
@@ -208,7 +208,7 @@ final class PrivateChatE2ETests: XCTestCase {
             }
         }
         
-        let trackedMessage = BitchatMessage(
+        let trackedMessage = CybchatMessage(
             id: messageID,
             sender: TestConstants.testNickname1,
             content: TestConstants.testMessage1,
@@ -354,11 +354,11 @@ final class PrivateChatE2ETests: XCTestCase {
         alice.packetDeliveryHandler = { packet in
             // Encrypt outgoing private messages
             if packet.type == 0x01,
-               let message = BitchatMessage.fromBinaryPayload(packet.payload),
+               let message = CybchatMessage.fromBinaryPayload(packet.payload),
                message.isPrivate {
                 do {
                     let encrypted = try aliceManager.encrypt(packet.payload, for: TestConstants.testPeerID2)
-                    let encryptedPacket = BitchatPacket(
+                    let encryptedPacket = CybchatPacket(
                         type: 0x02, // Encrypted message type
                         senderID: packet.senderID,
                         recipientID: packet.recipientID,
@@ -379,7 +379,7 @@ final class PrivateChatE2ETests: XCTestCase {
             if packet.type == 0x02 {
                 do {
                     let decrypted = try bobManager.decrypt(packet.payload, from: TestConstants.testPeerID1)
-                    if let message = BitchatMessage.fromBinaryPayload(decrypted) {
+                    if let message = CybchatMessage.fromBinaryPayload(decrypted) {
                         XCTAssertEqual(message.content, TestConstants.testMessage1)
                         XCTAssertTrue(message.isPrivate)
                         expectation.fulfill()
@@ -523,7 +523,7 @@ final class PrivateChatE2ETests: XCTestCase {
         }
         
         // Create message
-        let message = BitchatMessage(
+        let message = CybchatMessage(
             id: messageID,
             sender: TestConstants.testNickname1,
             content: TestConstants.testMessage1,

@@ -23,7 +23,7 @@ Successfully created a new **cybchat** application based on the original **cybch
 ### 3. Code Updates
 
 #### Main App Files
-- ✅ `cybchat/CybchatApp.swift` - Renamed from BitchatApp.swift
+- ✅ `cybchat/CybchatApp.swift` - Main application file
 - ✅ `cybchat/Info.plist` - Updated display name and descriptions
 - ✅ `cybchat/cybchat.entitlements` - Updated app group identifiers
 - ✅ `cybchat/cybchat-macOS.entitlements` - Updated app group identifiers

@@ -16,7 +16,7 @@ final class PublicChatE2ETests: XCTestCase {
     var charlie: MockBluetoothMeshService!
     var david: MockBluetoothMeshService!
     
-    var receivedMessages: [String: [BitchatMessage]] = [:]
+    var receivedMessages: [String: [CybchatMessage]] = [:]
     
     override func setUp() {
         super.setUp()
@@ -97,11 +97,11 @@ final class PublicChatE2ETests: XCTestCase {
         // Set up relay in Bob
         bob.packetDeliveryHandler = { packet in
             // Bob should relay to Charlie
-            if let message = BitchatMessage.fromBinaryPayload(packet.payload),
+            if let message = CybchatMessage.fromBinaryPayload(packet.payload),
                message.sender == TestConstants.testNickname1 {
                 
                 // Create relay message
-                let relayMessage = BitchatMessage(
+                let relayMessage = CybchatMessage(
                     id: message.id,
                     sender: message.sender,
                     content: message.content,
@@ -115,7 +115,7 @@ final class PublicChatE2ETests: XCTestCase {
                 )
                 
                 if let relayPayload = relayMessage.toBinaryPayload() {
-                    let relayPacket = BitchatPacket(
+                    let relayPacket = CybchatPacket(
                         type: packet.type,
                         senderID: packet.senderID,
                         recipientID: packet.recipientID,
@@ -424,12 +424,12 @@ final class PublicChatE2ETests: XCTestCase {
             // Check if should relay
             guard packet.ttl > 1 else { return }
             
-            if let message = BitchatMessage.fromBinaryPayload(packet.payload) {
+            if let message = CybchatMessage.fromBinaryPayload(packet.payload) {
                 // Don't relay own messages
                 guard message.senderPeerID != node.peerID else { return }
                 
                 // Create relay message
-                let relayMessage = BitchatMessage(
+                let relayMessage = CybchatMessage(
                     id: message.id,
                     sender: message.sender,
                     content: message.content,
@@ -443,7 +443,7 @@ final class PublicChatE2ETests: XCTestCase {
                 )
                 
                 if let relayPayload = relayMessage.toBinaryPayload() {
-                    let relayPacket = BitchatPacket(
+                    let relayPacket = CybchatPacket(
                         type: packet.type,
                         senderID: node.peerID.data(using: .utf8)!,
                         recipientID: packet.recipientID,

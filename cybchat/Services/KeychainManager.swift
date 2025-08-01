@@ -32,11 +32,11 @@ class KeychainManager {
         
         // List of old service names to migrate from
         let legacyServices = [
-            "com.bitchat.passwords",
-            "com.bitchat.deviceidentity",
-            "com.bitchat.noise.identity",
-            "chat.bitchat.passwords",
-            "bitchat.keychain"
+            "com.cybchat.passwords",
+            "com.cybchat.deviceidentity",
+            "com.cybchat.noise.identity",
+            "chat.cybchat.passwords",
+            "cybchat.keychain"
         ]
         
         var migratedItems = 0
@@ -96,7 +96,7 @@ class KeychainManager {
         
         // Method 2: Check if we can access a path outside sandbox
         let homeDir = FileManager.default.homeDirectoryForCurrentUser
-        let testPath = homeDir.appendingPathComponent("../../../tmp/bitchat_sandbox_test_\(UUID().uuidString)")
+        let testPath = homeDir.appendingPathComponent("../../../tmp/cybchat_sandbox_test_\(UUID().uuidString)")
         let canWriteOutsideSandbox = FileManager.default.createFile(atPath: testPath.path, contents: nil, attributes: nil)
         if canWriteOutsideSandbox {
             try? FileManager.default.removeItem(at: testPath)

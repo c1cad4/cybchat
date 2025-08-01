@@ -34,8 +34,8 @@ class TestHelpers {
         isPrivate: Bool = false,
         recipientNickname: String? = nil,
         mentions: [String]? = nil
-    ) -> BitchatMessage {
-        return BitchatMessage(
+    ) -> CybchatMessage {
+        return CybchatMessage(
             id: UUID().uuidString,
             sender: sender,
             content: content,
@@ -56,8 +56,8 @@ class TestHelpers {
         payload: Data = "test payload".data(using: .utf8)!,
         signature: Data? = nil,
         ttl: UInt8 = 3
-    ) -> BitchatPacket {
-        return BitchatPacket(
+    ) -> CybchatPacket {
+        return CybchatPacket(
             type: type,
             senderID: senderID.data(using: .utf8)!,
             recipientID: recipientID?.data(using: .utf8),

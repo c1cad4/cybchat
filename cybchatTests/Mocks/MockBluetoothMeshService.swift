@@ -11,11 +11,11 @@ import MultipeerConnectivity
 @testable import cybchat
 
 class MockBluetoothMeshService: BluetoothMeshService {
-    var sentMessages: [(message: BitchatMessage, packet: BitchatPacket)] = []
-    var sentPackets: [BitchatPacket] = []
+    var sentMessages: [(message: CybchatMessage, packet: CybchatPacket)] = []
+    var sentPackets: [CybchatPacket] = []
     var connectedPeers: Set<String> = []
-    var messageDeliveryHandler: ((BitchatMessage) -> Void)?
-    var packetDeliveryHandler: ((BitchatPacket) -> Void)?
+    var messageDeliveryHandler: ((CybchatMessage) -> Void)?
+    var packetDeliveryHandler: ((CybchatPacket) -> Void)?
     
     // Override these properties
     var mockNickname: String = "MockUser"
@@ -52,7 +52,7 @@ class MockBluetoothMeshService: BluetoothMeshService {
     }
     
     override func sendMessage(_ content: String, mentions: [String], to room: String? = nil, messageID: String? = nil, timestamp: Date? = nil) {
-        let message = BitchatMessage(
+        let message = CybchatMessage(
             id: messageID ?? UUID().uuidString,
             sender: mockNickname,
             content: content,
@@ -66,7 +66,7 @@ class MockBluetoothMeshService: BluetoothMeshService {
         )
         
         if let payload = message.toBinaryPayload() {
-            let packet = BitchatPacket(
+            let packet = CybchatPacket(
                 type: 0x01,
                 senderID: myPeerID.data(using: .utf8)!,
                 recipientID: nil,
@@ -90,7 +90,7 @@ class MockBluetoothMeshService: BluetoothMeshService {
     }
     
     override func sendPrivateMessage(_ content: String, to recipientPeerID: String, recipientNickname: String, messageID: String? = nil) {
-        let message = BitchatMessage(
+        let message = CybchatMessage(
             id: messageID ?? UUID().uuidString,
             sender: mockNickname,
             content: content,
@@ -104,7 +104,7 @@ class MockBluetoothMeshService: BluetoothMeshService {
         )
         
         if let payload = message.toBinaryPayload() {
-            let packet = BitchatPacket(
+            let packet = CybchatPacket(
                 type: 0x01,
                 senderID: myPeerID.data(using: .utf8)!,
                 recipientID: recipientPeerID.data(using: .utf8)!,
@@ -127,13 +127,13 @@ class MockBluetoothMeshService: BluetoothMeshService {
         }
     }
     
-    func simulateIncomingMessage(_ message: BitchatMessage) {
+    func simulateIncomingMessage(_ message: CybchatMessage) {
         delegate?.didReceiveMessage(message)
     }
     
-    func simulateIncomingPacket(_ packet: BitchatPacket) {
+    func simulateIncomingPacket(_ packet: CybchatPacket) {
         // Process through the actual handling logic
-        if let message = BitchatMessage.fromBinaryPayload(packet.payload) {
+        if let message = CybchatMessage.fromBinaryPayload(packet.payload) {
             delegate?.didReceiveMessage(message)
         }
         packetDeliveryHandler?(packet)

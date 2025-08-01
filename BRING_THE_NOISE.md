@@ -1,8 +1,8 @@
-# Bringing the Noise: Secure Communication in BitChat
+# Bringing the Noise: Secure Communication in CybChat
 
 ## Overview
 
-BitChat implements the Noise Protocol Framework for end-to-end encryption, providing forward secrecy, identity hiding, and cryptographic authentication. This document details our Swift implementation and its integration with BitChat's decentralized mesh network.
+CybChat implements the Noise Protocol Framework for end-to-end encryption, providing forward secrecy, identity hiding, and cryptographic authentication. This document details our Swift implementation and its integration with CybChat's decentralized mesh network.
 
 ## The Noise Protocol Framework
 
@@ -17,7 +17,7 @@ The Noise Protocol Framework offers:
 
 ### The XX Pattern
 
-BitChat uses the Noise XX pattern:
+CybChat uses the Noise XX pattern:
 ```
 XX:
   -> e
@@ -99,7 +99,7 @@ func removeSession(for peerID: String)
 func getSessionsNeedingRekey() -> [(String, Bool)]
 ```
 
-## Integration with BitChat
+## Integration with CybChat
 
 ### Peer ID Rotation
 
@@ -182,7 +182,7 @@ enum NoiseError: Error {
 
 ## Protocol Version Negotiation
 
-BitChat implements protocol version negotiation to ensure compatibility between different client versions:
+CybChat implements protocol version negotiation to ensure compatibility between different client versions:
 
 ### Version Negotiation Flow
 1. **Version Hello**: Upon connection, peers exchange supported protocol versions
@@ -214,4 +214,4 @@ case versionAck = 0x21      // Acknowledge and agree on version
 
 ## Conclusion
 
-BitChat's Noise implementation provides encryption while maintaining the simplicity and performance required for a peer-to-peer messaging application. The protocol's elegant design ensures that people's communications remain private, authenticated, and forward-secure without sacrificing usability.
+CybChat's Noise implementation provides encryption while maintaining the simplicity and performance required for a peer-to-peer messaging application. The protocol's elegant design ensures that people's communications remain private, authenticated, and forward-secure without sacrificing usability.

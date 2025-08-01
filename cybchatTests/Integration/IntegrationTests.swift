@@ -190,7 +190,7 @@ final class IntegrationTests: XCTestCase {
             } else if packet.type == 0x02 { // Would be encrypted
                 // Simulate encryption
                 if let encrypted = try? self.noiseManagers["Alice"]!.encrypt(packet.payload, for: TestConstants.testPeerID2) {
-                    let encPacket = BitchatPacket(
+                    let encPacket = CybchatPacket(
                         type: packet.type,
                         senderID: packet.senderID,
                         recipientID: packet.recipientID,
@@ -687,11 +687,11 @@ final class IntegrationTests: XCTestCase {
         // Setup encryption at Alice
         nodes["Alice"]!.packetDeliveryHandler = { packet in
             if packet.type == 0x01,
-               let message = BitchatMessage.fromBinaryPayload(packet.payload),
+               let message = CybchatMessage.fromBinaryPayload(packet.payload),
                message.isPrivate && packet.recipientID != nil {
                 // Encrypt private messages
                 if let encrypted = try? self.noiseManagers["Alice"]!.encrypt(packet.payload, for: TestConstants.testPeerID2) {
-                    let encPacket = BitchatPacket(
+                    let encPacket = CybchatPacket(
                         type: 0x02,
                         senderID: packet.senderID,
                         recipientID: packet.recipientID,
@@ -709,7 +709,7 @@ final class IntegrationTests: XCTestCase {
         nodes["Bob"]!.packetDeliveryHandler = { packet in
             if packet.type == 0x02 {
                 if let decrypted = try? self.noiseManagers["Bob"]!.decrypt(packet.payload, from: TestConstants.testPeerID1),
-                   let message = BitchatMessage.fromBinaryPayload(decrypted) {
+                   let message = CybchatMessage.fromBinaryPayload(decrypted) {
                     bobDecrypted = message.content == "Secret message"
                     expectation.fulfill()
                 }
@@ -781,10 +781,10 @@ final class IntegrationTests: XCTestCase {
         node.packetDeliveryHandler = { packet in
             guard packet.ttl > 1 else { return }
             
-            if let message = BitchatMessage.fromBinaryPayload(packet.payload) {
+            if let message = CybchatMessage.fromBinaryPayload(packet.payload) {
                 guard message.senderPeerID != node.peerID else { return }
                 
-                let relayMessage = BitchatMessage(
+                let relayMessage = CybchatMessage(
                     id: message.id,
                     sender: message.sender,
                     content: message.content,
@@ -798,7 +798,7 @@ final class IntegrationTests: XCTestCase {
                 )
                 
                 if let relayPayload = relayMessage.toBinaryPayload() {
-                    let relayPacket = BitchatPacket(
+                    let relayPacket = CybchatPacket(
                         type: packet.type,
                         senderID: packet.senderID,
                         recipientID: packet.recipientID,

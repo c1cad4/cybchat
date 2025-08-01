@@ -164,7 +164,7 @@ final class BinaryProtocolTests: XCTestCase {
             return
         }
         
-        guard let decodedMessage = BitchatMessage.fromBinaryPayload(payload) else {
+        guard let decodedMessage = CybchatMessage.fromBinaryPayload(payload) else {
             XCTFail("Failed to decode message from binary")
             return
         }
@@ -186,7 +186,7 @@ final class BinaryProtocolTests: XCTestCase {
         )
         
         guard let payload = message.toBinaryPayload(),
-              let decodedMessage = BitchatMessage.fromBinaryPayload(payload) else {
+              let decodedMessage = CybchatMessage.fromBinaryPayload(payload) else {
             XCTFail("Failed to encode/decode private message")
             return
         }
@@ -200,7 +200,7 @@ final class BinaryProtocolTests: XCTestCase {
         let message = TestHelpers.createTestMessage(mentions: mentions)
         
         guard let payload = message.toBinaryPayload(),
-              let decodedMessage = BitchatMessage.fromBinaryPayload(payload) else {
+              let decodedMessage = CybchatMessage.fromBinaryPayload(payload) else {
             XCTFail("Failed to encode/decode message with mentions")
             return
         }
@@ -209,7 +209,7 @@ final class BinaryProtocolTests: XCTestCase {
     }
     
     func testRelayMessageEncoding() throws {
-        let message = BitchatMessage(
+        let message = CybchatMessage(
             id: UUID().uuidString,
             sender: TestConstants.testNickname1,
             content: TestConstants.testMessage1,
@@ -223,7 +223,7 @@ final class BinaryProtocolTests: XCTestCase {
         )
         
         guard let payload = message.toBinaryPayload(),
-              let decodedMessage = BitchatMessage.fromBinaryPayload(payload) else {
+              let decodedMessage = CybchatMessage.fromBinaryPayload(payload) else {
             XCTFail("Failed to encode/decode relay message")
             return
         }
@@ -261,7 +261,7 @@ final class BinaryProtocolTests: XCTestCase {
         let message = TestHelpers.createTestMessage(content: largeContent)
         
         guard let payload = message.toBinaryPayload(),
-              let decodedMessage = BitchatMessage.fromBinaryPayload(payload) else {
+              let decodedMessage = CybchatMessage.fromBinaryPayload(payload) else {
             XCTFail("Failed to handle large message")
             return
         }
@@ -274,7 +274,7 @@ final class BinaryProtocolTests: XCTestCase {
         let emptyMessage = TestHelpers.createTestMessage(content: "")
         
         guard let payload = emptyMessage.toBinaryPayload(),
-              let decodedMessage = BitchatMessage.fromBinaryPayload(payload) else {
+              let decodedMessage = CybchatMessage.fromBinaryPayload(payload) else {
             XCTFail("Failed to handle empty message")
             return
         }

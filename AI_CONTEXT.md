@@ -1,10 +1,10 @@
-# AI Context for BitChat
+# AI Context for CybChat
 
-This document provides essential context for AI assistants working on the BitChat codebase. Read this first to understand the project's architecture, design decisions, and key concepts.
+This document provides essential context for AI assistants working on the CybChat codebase. Read this first to understand the project's architecture, design decisions, and key concepts.
 
 ## Project Overview
 
-BitChat is a decentralized, peer-to-peer messaging application that works over Bluetooth mesh networks without requiring internet connectivity, servers, or phone numbers. It's designed for scenarios where traditional communication infrastructure is unavailable or untrusted.
+CybChat is a decentralized, peer-to-peer messaging application that works over Bluetooth mesh networks without requiring internet connectivity, servers, or phone numbers. It's designed for scenarios where traditional communication infrastructure is unavailable or untrusted.
 
 ### Key Features
 - **Bluetooth Mesh Networking**: Multi-hop message relay over BLE
@@ -42,7 +42,7 @@ BitChat is a decentralized, peer-to-peer messaging application that works over B
                     │                            │
 ┌───────────────────────────────┐ ┌────────────────────────────────┐
 │       Protocol Layer          │ │         Transport              │
-│ (BitchatProtocol, Binary-     │ │    (WebSocket to Nostr        │
+│ (CybchatProtocol, Binary-     │ │    (WebSocket to Nostr        │
 │  Protocol, NoiseProtocol)     │ │      relay servers)           │
 └───────────────────────────────┘ └────────────────────────────────┘
                     │
@@ -64,8 +64,8 @@ BitChat is a decentralized, peer-to-peer messaging application that works over B
   - Version negotiation with peers
   - Automatic reconnection and topology management
 
-### 2. BitchatProtocol (Protocol Layer)
-- **Location**: `cybchat/Protocols/BitchatProtocol.swift`
+### 2. CybchatProtocol (Protocol Layer)
+- **Location**: `cybchat/Protocols/CybchatProtocol.swift`
 - **Purpose**: Defines the application-level messaging protocol
 - **Key Features**:
   - Binary packet format for efficiency
@@ -170,7 +170,7 @@ Application-level services that coordinate between layers:
 
 ### Protocols (`/cybchat/Protocols/`)
 Protocol definitions and implementations:
-- `BitchatProtocol`: Application protocol
+- `CybchatProtocol`: Application protocol
 - `BinaryProtocol`: Low-level encoding
 - `BinaryEncodingUtils`: Helper functions
 
@@ -190,10 +190,10 @@ MVVM architecture for UI:
 ## Nostr Protocol Implementation
 
 ### Overview
-BitChat integrates Nostr as a secondary transport for communicating with mutual favorites when Bluetooth connectivity is unavailable. This integration is transparent to users - messages automatically route through Nostr when needed.
+CybChat integrates Nostr as a secondary transport for communicating with mutual favorites when Bluetooth connectivity is unavailable. This integration is transparent to users - messages automatically route through Nostr when needed.
 
 ### NIP-17 Private Direct Messages
-BitChat implements NIP-17 (Private Direct Messages) for metadata-private communication:
+CybChat implements NIP-17 (Private Direct Messages) for metadata-private communication:
 
 1. **Gift Wrap Structure**:
    ```
@@ -357,7 +357,7 @@ Structured content for different message types:
 ## Common Tasks
 
 ### Adding a New Message Type
-1. Define in `MessageType` enum in `BitchatProtocol.swift`
+1. Define in `MessageType` enum in `CybchatProtocol.swift`
 2. Implement encoding/decoding logic
 3. Add handling in `ChatViewModel`
 4. Update UI if needed
@@ -469,4 +469,4 @@ Structured content for different message types:
 6. **Dual Transport**: Remember that messages can flow over Bluetooth OR Nostr
 7. **Favorites System**: Nostr only works between mutual favorites
 
-When in doubt, prioritize security and privacy over features. BitChat users depend on this app in situations where traditional communication has failed them.
+When in doubt, prioritize security and privacy over features. CybChat users depend on this app in situations where traditional communication has failed them.
