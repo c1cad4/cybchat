@@ -3,26 +3,26 @@
 import PackageDescription
 
 let package = Package(
-    name: "bitchat",
+    name: "cybchat",
     platforms: [
         .iOS(.v16),
         .macOS(.v13)
     ],
     products: [
         .executable(
-            name: "bitchat",
-            targets: ["bitchat"]
+            name: "cybchat",
+            targets: ["cybchat"]
         ),
     ],
     targets: [
         .executableTarget(
-            name: "bitchat",
-            path: "bitchat",
+            name: "cybchat",
+            path: "cybchat",
             exclude: [
                 "Info.plist",
                 "Assets.xcassets",
-                "bitchat.entitlements",
-                "bitchat-macOS.entitlements",
+                "cybchat.entitlements",
+                "cybchat-macOS.entitlements",
                 "LaunchScreen.storyboard"
             ]
         ),

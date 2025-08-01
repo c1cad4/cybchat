@@ -1,0 +1,1214 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01EF8D084ECB7A2D48C17BD9 /* MessageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D308488C10B973F8A485291 /* MessageRouter.swift */; };
+		0307E10A2933A1812792E7C0 /* BinaryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDC952C63512C18475407E8 /* BinaryProtocol.swift */; };
+		074B63376F5671D23095BAE1 /* IdentityModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D6F94C16656FDBDB890582 /* IdentityModels.swift */; };
+		08C62501C014A8FB1A383E78 /* NoiseSecurityConsiderations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2F8D04509E604C7CFAE0E /* NoiseSecurityConsiderations.swift */; };
+		0F9BB731B3599108788A59A1 /* CompressionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9056992E53FBAD0F386A8F /* CompressionUtil.swift */; };
+		1383BF7240D7038538BB7EEC /* cybchatShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AC8F7F2E95BA2825DE581BD6 /* cybchatShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		14741A8265D84DF1DC812237 /* BinaryProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFB1EF09DE2E5792DD39AE6 /* BinaryProtocolTests.swift */; };
+		172005D0127C870B95E404F9 /* LinkPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E3869D5AE9E794360BF339 /* LinkPreviewView.swift */; };
+		18AFFD264CBAB88386DE99AF /* BinaryEncodingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C1ECE5636E6995C7CCD0F /* BinaryEncodingUtils.swift */; };
+		19C551B37C57C1644CA23F72 /* NoiseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69DD81F2C2D1A7DE26B6A9 /* NoiseSession.swift */; };
+		1E415364A0D8B524570C2C33 /* MockNoiseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53897511A0D0138EE0A38047 /* MockNoiseSession.swift */; };
+		20A61ECDDC7E55CF25F88360 /* MessageRetryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63600689263B0697BFD189E /* MessageRetryService.swift */; };
+		2252F720E93B6FC100DDEC65 /* NoiseEncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B45A64BFFBE540AA51AA10 /* NoiseEncryptionService.swift */; };
+		2ADFCA24E267E1F8121F33F4 /* CybchatProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9948056C483BED65C30B18DD /* CybchatProtocol.swift */; };
+		2CA38EE07F595D6933C64397 /* NoiseHandshakeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420F35BD086AA096AF3F95C /* NoiseHandshakeCoordinator.swift */; };
+		2D14500FA8DD4B7891A7EBE2 /* NostrProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F196E97B8538D0DF60FB6D /* NostrProtocolTests.swift */; };
+		2F8433CDBD7BC33616B0BFC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4927FC2EEF7B2E9CCC1C36F /* Assets.xcassets */; };
+		3259B4029DE55DB6B2AAA5FD /* BinaryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDC952C63512C18475407E8 /* BinaryProtocol.swift */; };
+		34D50606FD0A941763D49683 /* CompressionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9056992E53FBAD0F386A8F /* CompressionUtil.swift */; };
+		34EB64C06AE49958F0352678 /* FavoritesPersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A8D920CD630A1ECCA470EB /* FavoritesPersistenceService.swift */; };
+		368D74FC6DCB28538BDB3711 /* NoiseProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E637AC329B7AEFC99FB5A2F /* NoiseProtocolTests.swift */; };
+		377240F45BAA7B9D6854EFE3 /* FavoritesPersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A8D920CD630A1ECCA470EB /* FavoritesPersistenceService.swift */; };
+		39012D87B90D70CEB36BFFD2 /* NoiseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3C466002627BBE25A5FA3 /* NoiseProtocol.swift */; };
+		39897A61B2A17A6331396CE0 /* PublicChatE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0C74188FC3326BB94F2FF8 /* PublicChatE2ETests.swift */; };
+		3A4E8C7D4990EA21F0062A6D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5873049E4C85AD05EAED35 /* ContentView.swift */; };
+		3A660DB26DCA6E7D648AE671 /* DeliveryTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD83384A35E20272C7A25867 /* DeliveryTracker.swift */; };
+		3DCA9042B27BC32450C65518 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533CD95B6797ADD24D2F5C5 /* TestHelpers.swift */; };
+		41BC6870081E986C617A9EDA /* CybchatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9654F58294D59FA8DB0228E /* CybchatApp.swift */; };
+		4296D38D6EF67047C416BEEE /* NoiseProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E637AC329B7AEFC99FB5A2F /* NoiseProtocolTests.swift */; };
+		447DBABDA8514D7895494643 /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5814F9BA5541FE96B2E8A050 /* AppInfoView.swift */; };
+		48FBE26F48D57226A4320F4F /* IdentityModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D6F94C16656FDBDB890582 /* IdentityModels.swift */; };
+		4ABEFF4C9818903FD1A8C0A2 /* OptimizedBloomFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E0F4D8A9F8F602CCF60FCB /* OptimizedBloomFilter.swift */; };
+		4B85B2E2BB8C29BDCF75F920 /* DeliveryTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD83384A35E20272C7A25867 /* DeliveryTracker.swift */; };
+		4D87BC8D9D9EB12DC8EEC060 /* MockBluetoothMeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7B6049AE67957EBC50D8E9 /* MockBluetoothMeshService.swift */; };
+		4E528C8E667389B9ED6BBC04 /* NostrProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC836B568D168F91268EA0F6 /* NostrProtocol.swift */; };
+		4F3E2CE10A255C261A4EF80D /* MockNoiseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53897511A0D0138EE0A38047 /* MockNoiseSession.swift */; };
+		521CD3C1CDCBF6A316BC665C /* FingerprintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0C8862BF331F5F52949FFC /* FingerprintView.swift */; };
+		5366C39F286E77211922EBB2 /* MockBluetoothMeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7B6049AE67957EBC50D8E9 /* MockBluetoothMeshService.swift */; };
+		596314B6AE4E11CD53129DB9 /* NostrIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C612CF8EF029D3A4DE1696 /* NostrIdentity.swift */; };
+		5C0280BB044EF29C5F980ECD /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589E7C76BCBF3DA1632AD148 /* NotificationService.swift */; };
+		5E72694064C073A50A5763E9 /* P256K in Frameworks */ = {isa = PBXBuildFile; productRef = 1FBC677C64F0B71D3C0DCF66 /* P256K */; };
+		5EEE16A3B062DC0D62146C63 /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB0069B4E6B66580DBF802E /* TestConstants.swift */; };
+		70BD21B811C69FA6543A65D7 /* MessageRetryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63600689263B0697BFD189E /* MessageRetryService.swift */; };
+		7369293592174F49C593BEDF /* CybchatPeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7464CE74AF74E6F40BE13CAA /* CybchatPeer.swift */; };
+		755D5428BC5658C8AA73959C /* NostrProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F196E97B8538D0DF60FB6D /* NostrProtocolTests.swift */; };
+		77D0D48DE0781655A07833B4 /* IntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CE0826374DDBFCAEA2AE40 /* IntegrationTests.swift */; };
+		7AC0B521FCB9638556956F3B /* SecureLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184FC869602D55F652C76E19 /* SecureLogger.swift */; };
+		7B27351C540AFC24B9774541 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE38DC5E51CA1C85B1139 /* ChatViewModel.swift */; };
+		81E4D5A0E299ECECD512ABD5 /* PrivateChatE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7035E5D40609E152893C0EE /* PrivateChatE2ETests.swift */; };
+		839C1AF7295B33E755E4F474 /* BatteryOptimizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D306AB0CDF44E8EFE8667 /* BatteryOptimizer.swift */; };
+		88F8DF1E9154248A9700E83F /* NoiseSecurityConsiderations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2F8D04509E604C7CFAE0E /* NoiseSecurityConsiderations.swift */; };
+		8A4624C63867DFCA75ED9F64 /* OptimizedBloomFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E0F4D8A9F8F602CCF60FCB /* OptimizedBloomFilter.swift */; };
+		941E451839986BD2A39F9DE3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5873049E4C85AD05EAED35 /* ContentView.swift */; };
+		960831FB33ED89DDB2175758 /* PeerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860FABC3E5D42D48243F1EE5 /* PeerSession.swift */; };
+		997E2ACABB2C0E97294111B6 /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB0069B4E6B66580DBF802E /* TestConstants.swift */; };
+		9A9B4BB1677BD0A0360D27DB /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C040949938BD58088DEC636 /* ShareViewController.swift */; };
+		9AF3208BC2601729278B6D78 /* CybchatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9654F58294D59FA8DB0228E /* CybchatApp.swift */; };
+		9B279EAF805895DE5D837766 /* CybchatProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9948056C483BED65C30B18DD /* CybchatProtocol.swift */; };
+		9CDF022A4E22F0392F5A37F1 /* MessageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D308488C10B973F8A485291 /* MessageRouter.swift */; };
+		A0FED929CB64224D720CD7CA /* BinaryProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFB1EF09DE2E5792DD39AE6 /* BinaryProtocolTests.swift */; };
+		A3DDE7134D5F9F1C898FFB14 /* LRUCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881C81B928AFEDB1B4A21EF5 /* LRUCache.swift */; };
+		A46360CC2F8F75F721711457 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4927FC2EEF7B2E9CCC1C36F /* Assets.xcassets */; };
+		A620C2FCCC12186F06ECA8C9 /* BluetoothMeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C5A40678097CF61EE98A6D /* BluetoothMeshService.swift */; };
+		AAA28E7E7ADE73ADC8D60538 /* PublicChatE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0C74188FC3326BB94F2FF8 /* PublicChatE2ETests.swift */; };
+		AC635B648C15D6B79EAA1A2B /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533CD95B6797ADD24D2F5C5 /* TestHelpers.swift */; };
+		B2502D14E6ED3EF884FD0CB3 /* NoiseHandshakeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420F35BD086AA096AF3F95C /* NoiseHandshakeCoordinator.swift */; };
+		B2988452F7D0E009BEE3D865 /* PrivateChatE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7035E5D40609E152893C0EE /* PrivateChatE2ETests.swift */; };
+		B8F013F3DD03203E294EF08E /* PeerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860FABC3E5D42D48243F1EE5 /* PeerSession.swift */; };
+		BCB10CA4637CE9184BE61A92 /* NostrRelayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E193CB3FCB7768DC3DCDA5F /* NostrRelayManager.swift */; };
+		BEE4DA39818E70E5CAEE6B95 /* BatteryOptimizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D306AB0CDF44E8EFE8667 /* BatteryOptimizer.swift */; };
+		BF8F65344E25AC8099DE42DA /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE38DC5E51CA1C85B1139 /* ChatViewModel.swift */; };
+		BFBA7155D0684BF2783D9677 /* NoiseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69DD81F2C2D1A7DE26B6A9 /* NoiseSession.swift */; };
+		C234FADB2EE06733459F04EC /* FingerprintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0C8862BF331F5F52949FFC /* FingerprintView.swift */; };
+		C420191FBED7055F468A40DA /* LinkPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E3869D5AE9E794360BF339 /* LinkPreviewView.swift */; };
+		CCA3AE30B22FBEB5C3DA5AB4 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589E7C76BCBF3DA1632AD148 /* NotificationService.swift */; };
+		CCCB416C2C5387DB33EEBED5 /* NostrProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC836B568D168F91268EA0F6 /* NostrProtocol.swift */; };
+		CEFCBC1CDD0BD9E5D8DB375E /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5814F9BA5541FE96B2E8A050 /* AppInfoView.swift */; };
+		D63778AE26A2A23AF24A8734 /* BluetoothMeshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C5A40678097CF61EE98A6D /* BluetoothMeshService.swift */; };
+		D940F2FAF440152DAEAF0965 /* ProcessedMessagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5D14879B689A317BFD17C3 /* ProcessedMessagesService.swift */; };
+		D98D9112FE792780491B5B5C /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91346FD259375AA876A776A4 /* KeychainManager.swift */; };
+		DE37E24C54E3777991A5EED0 /* LRUCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881C81B928AFEDB1B4A21EF5 /* LRUCache.swift */; };
+		DEDF6E487817E2F57B32D91F /* InputValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1102C607A51CB0786F2E78 /* InputValidator.swift */; };
+		DF100D671CCFEB7B2FC7D474 /* BinaryEncodingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C1ECE5636E6995C7CCD0F /* BinaryEncodingUtils.swift */; };
+		E0736ED9078C817772557C88 /* InputValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1102C607A51CB0786F2E78 /* InputValidator.swift */; };
+		E2A8E340772B9A03453E56AD /* NostrIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C612CF8EF029D3A4DE1696 /* NostrIdentity.swift */; };
+		EDE0EA4A8EE480A979313F75 /* IntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CE0826374DDBFCAEA2AE40 /* IntegrationTests.swift */; };
+		F03E82C77B84EBD67FFC24B1 /* P256K in Frameworks */ = {isa = PBXBuildFile; productRef = 6926BF99C4CE3FC29939CB79 /* P256K */; };
+		F040CD20A1A1A7CB1EAFEB2A /* ProcessedMessagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5D14879B689A317BFD17C3 /* ProcessedMessagesService.swift */; };
+		F09B068858D0E08A06099480 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91346FD259375AA876A776A4 /* KeychainManager.swift */; };
+		F39C264E08952F3A84F6465B /* CybchatPeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7464CE74AF74E6F40BE13CAA /* CybchatPeer.swift */; };
+		F7EAF3ED205336F6F7772F72 /* SecureIdentityStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD18FC94B20E8BA8B48873FB /* SecureIdentityStateManager.swift */; };
+		F8301A8F2555719938568780 /* SecureLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184FC869602D55F652C76E19 /* SecureLogger.swift */; };
+		FA1F8DC6ADEE49D40A656E1C /* SecureIdentityStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD18FC94B20E8BA8B48873FB /* SecureIdentityStateManager.swift */; };
+		FCBEEE515FC88211E2CC6165 /* NoiseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3C466002627BBE25A5FA3 /* NoiseProtocol.swift */; };
+		FDB833543CABF5E4C7A19D0F /* NoiseEncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B45A64BFFBE540AA51AA10 /* NoiseEncryptionService.swift */; };
+		FF018F74B4A366C39AA1BDC7 /* NostrRelayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E193CB3FCB7768DC3DCDA5F /* NostrRelayManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		49D0A193F295485CF1E02F7C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1EAB991928B0889E7856052 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 26B1EF5D8EFC8E46DB6A7BA4;
+			remoteInfo = cybchat_macOS;
+		};
+		4FC4D4114C23830EE0F81AA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1EAB991928B0889E7856052 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F8A3C625334C4B5D20B3CD37;
+			remoteInfo = cybchat_iOS;
+		};
+		826487F9B799BDAE13E94E4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1EAB991928B0889E7856052 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6953ECBBBB1978E389C34FD2;
+			remoteInfo = cybchatShareExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		578E973D8692313FFFCB0165 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1383BF7240D7038538BB7EEC /* cybchatShareExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0420F35BD086AA096AF3F95C /* NoiseHandshakeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseHandshakeCoordinator.swift; sourceTree = "<group>"; };
+		09E3869D5AE9E794360BF339 /* LinkPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPreviewView.swift; sourceTree = "<group>"; };
+		12B45A64BFFBE540AA51AA10 /* NoiseEncryptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseEncryptionService.swift; sourceTree = "<group>"; };
+		14A8D920CD630A1ECCA470EB /* FavoritesPersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPersistenceService.swift; sourceTree = "<group>"; };
+		17E3C466002627BBE25A5FA3 /* NoiseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseProtocol.swift; sourceTree = "<group>"; };
+		184FC869602D55F652C76E19 /* SecureLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureLogger.swift; sourceTree = "<group>"; };
+		1AFB1EF09DE2E5792DD39AE6 /* BinaryProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryProtocolTests.swift; sourceTree = "<group>"; };
+		1F5D14879B689A317BFD17C3 /* ProcessedMessagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedMessagesService.swift; sourceTree = "<group>"; };
+		2C040949938BD58088DEC636 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		30E0F4D8A9F8F602CCF60FCB /* OptimizedBloomFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimizedBloomFilter.swift; sourceTree = "<group>"; };
+		36E2F8D04509E604C7CFAE0E /* NoiseSecurityConsiderations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseSecurityConsiderations.swift; sourceTree = "<group>"; };
+		375D306AB0CDF44E8EFE8667 /* BatteryOptimizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryOptimizer.swift; sourceTree = "<group>"; };
+		3798B1184B81519EAE801279 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3B9056992E53FBAD0F386A8F /* CompressionUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressionUtil.swift; sourceTree = "<group>"; };
+		3D308488C10B973F8A485291 /* MessageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRouter.swift; sourceTree = "<group>"; };
+		3F4F1926C9ADB8DD281703B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		41F196E97B8538D0DF60FB6D /* NostrProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostrProtocolTests.swift; sourceTree = "<group>"; };
+		494C1ECE5636E6995C7CCD0F /* BinaryEncodingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryEncodingUtils.swift; sourceTree = "<group>"; };
+		4BDC952C63512C18475407E8 /* BinaryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryProtocol.swift; sourceTree = "<group>"; };
+		4E637AC329B7AEFC99FB5A2F /* NoiseProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseProtocolTests.swift; sourceTree = "<group>"; };
+		53897511A0D0138EE0A38047 /* MockNoiseSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNoiseSession.swift; sourceTree = "<group>"; };
+		53D6F94C16656FDBDB890582 /* IdentityModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityModels.swift; sourceTree = "<group>"; };
+		5814F9BA5541FE96B2E8A050 /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
+		589E7C76BCBF3DA1632AD148 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		5E4DE38DC5E51CA1C85B1139 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		66CC1A4583CEBF2880705BEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6E193CB3FCB7768DC3DCDA5F /* NostrRelayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostrRelayManager.swift; sourceTree = "<group>"; };
+		7464CE74AF74E6F40BE13CAA /* CybchatPeer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CybchatPeer.swift; sourceTree = "<group>"; };
+		81CE0826374DDBFCAEA2AE40 /* IntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationTests.swift; sourceTree = "<group>"; };
+		84C5A40678097CF61EE98A6D /* BluetoothMeshService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothMeshService.swift; sourceTree = "<group>"; };
+		84C612CF8EF029D3A4DE1696 /* NostrIdentity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostrIdentity.swift; sourceTree = "<group>"; };
+		860FABC3E5D42D48243F1EE5 /* PeerSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerSession.swift; sourceTree = "<group>"; };
+		87F125BA58CF33446185A382 /* cybchat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = cybchat.entitlements; sourceTree = "<group>"; };
+		881C81B928AFEDB1B4A21EF5 /* LRUCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRUCache.swift; sourceTree = "<group>"; };
+		8B7B6049AE67957EBC50D8E9 /* MockBluetoothMeshService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBluetoothMeshService.swift; sourceTree = "<group>"; };
+		91346FD259375AA876A776A4 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		9948056C483BED65C30B18DD /* CybchatProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CybchatProtocol.swift; sourceTree = "<group>"; };
+		9B6942A50A483DCFBDD6B1BD /* cybchatTests_macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cybchatTests_macOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C7DA061D3FD5E3A76A48FA1 /* cybchatShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = cybchatShareExtension.entitlements; sourceTree = "<group>"; };
+		AC8F7F2E95BA2825DE581BD6 /* cybchatShareExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = cybchatShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD18FC94B20E8BA8B48873FB /* SecureIdentityStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureIdentityStateManager.swift; sourceTree = "<group>"; };
+		B4927FC2EEF7B2E9CCC1C36F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B533CD95B6797ADD24D2F5C5 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		B7035E5D40609E152893C0EE /* PrivateChatE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateChatE2ETests.swift; sourceTree = "<group>"; };
+		B9654F58294D59FA8DB0228E /* CybchatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CybchatApp.swift; sourceTree = "<group>"; };
+		BB0C8862BF331F5F52949FFC /* FingerprintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerprintView.swift; sourceTree = "<group>"; };
+		C2FAD16DF2639CDF2EB43F4A /* cybchat-macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "cybchat-macOS.entitlements"; sourceTree = "<group>"; };
+		C63600689263B0697BFD189E /* MessageRetryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRetryService.swift; sourceTree = "<group>"; };
+		CE69DD81F2C2D1A7DE26B6A9 /* NoiseSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseSession.swift; sourceTree = "<group>"; };
+		DAE5B91C64C33C1A701D5289 /* cybchatTests_iOS.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = cybchatTests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC836B568D168F91268EA0F6 /* NostrProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostrProtocol.swift; sourceTree = "<group>"; };
+		DD0C74188FC3326BB94F2FF8 /* PublicChatE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicChatE2ETests.swift; sourceTree = "<group>"; };
+		DF5873049E4C85AD05EAED35 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F2E28E33AD0E5924DE7CB094 /* cybchat_macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cybchat_macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB1102C607A51CB0786F2E78 /* InputValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidator.swift; sourceTree = "<group>"; };
+		FB9DD7AB39E23A0399299F6B /* cybchat_iOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = cybchat_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD83384A35E20272C7A25867 /* DeliveryTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryTracker.swift; sourceTree = "<group>"; };
+		FEB0069B4E6B66580DBF802E /* TestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		133E9AB110FE633FA09216A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F03E82C77B84EBD67FFC24B1 /* P256K in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B78314605318326E605B8A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E72694064C073A50A5763E9 /* P256K in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		13BB3F7FF6FB4EF611F1003D /* Integration */ = {
+			isa = PBXGroup;
+			children = (
+				81CE0826374DDBFCAEA2AE40 /* IntegrationTests.swift */,
+			);
+			path = Integration;
+			sourceTree = "<group>";
+		};
+		242856730F6CE32800477917 /* EndToEnd */ = {
+			isa = PBXGroup;
+			children = (
+				B7035E5D40609E152893C0EE /* PrivateChatE2ETests.swift */,
+				DD0C74188FC3326BB94F2FF8 /* PublicChatE2ETests.swift */,
+			);
+			path = EndToEnd;
+			sourceTree = "<group>";
+		};
+		2D6BF7DA6A0B72228D8858A1 /* TestUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				FEB0069B4E6B66580DBF802E /* TestConstants.swift */,
+				B533CD95B6797ADD24D2F5C5 /* TestHelpers.swift */,
+			);
+			path = TestUtilities;
+			sourceTree = "<group>";
+		};
+		42FA1D165651FA29CAC8349E /* cybchat */ = {
+			isa = PBXGroup;
+			children = (
+				B4927FC2EEF7B2E9CCC1C36F /* Assets.xcassets */,
+				C2FAD16DF2639CDF2EB43F4A /* cybchat-macOS.entitlements */,
+				87F125BA58CF33446185A382 /* cybchat.entitlements */,
+				B9654F58294D59FA8DB0228E /* CybchatApp.swift */,
+				3F4F1926C9ADB8DD281703B3 /* Info.plist */,
+				DD997A48A5D07394B8C7D1A8 /* Identity */,
+				DB99C53ECE74C6162C15B9CE /* Models */,
+				781ACA3424DFE6C4BD1BA2D3 /* Noise */,
+				BA7B2CF5C3455B2DA7E2F673 /* Nostr */,
+				4A41F4D32ACB9CF8F437A16F /* Protocols */,
+				BBBE95D463E25B0F16064878 /* Services */,
+				4E9452532E36FEE1E2B25D5D /* Utils */,
+				57BFC982F374D4668814D656 /* ViewModels */,
+				43AB5BF48EF620A0BC1C8679 /* Views */,
+			);
+			path = cybchat;
+			sourceTree = "<group>";
+		};
+		43AB5BF48EF620A0BC1C8679 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5814F9BA5541FE96B2E8A050 /* AppInfoView.swift */,
+				DF5873049E4C85AD05EAED35 /* ContentView.swift */,
+				BB0C8862BF331F5F52949FFC /* FingerprintView.swift */,
+				09E3869D5AE9E794360BF339 /* LinkPreviewView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4A41F4D32ACB9CF8F437A16F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				494C1ECE5636E6995C7CCD0F /* BinaryEncodingUtils.swift */,
+				4BDC952C63512C18475407E8 /* BinaryProtocol.swift */,
+				9948056C483BED65C30B18DD /* CybchatProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		4E9452532E36FEE1E2B25D5D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				375D306AB0CDF44E8EFE8667 /* BatteryOptimizer.swift */,
+				3B9056992E53FBAD0F386A8F /* CompressionUtil.swift */,
+				FB1102C607A51CB0786F2E78 /* InputValidator.swift */,
+				881C81B928AFEDB1B4A21EF5 /* LRUCache.swift */,
+				30E0F4D8A9F8F602CCF60FCB /* OptimizedBloomFilter.swift */,
+				184FC869602D55F652C76E19 /* SecureLogger.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		4FF60060D855D4A731C93954 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				8B7B6049AE67957EBC50D8E9 /* MockBluetoothMeshService.swift */,
+				53897511A0D0138EE0A38047 /* MockNoiseSession.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		57BFC982F374D4668814D656 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5E4DE38DC5E51CA1C85B1139 /* ChatViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		68D663AE358BDE28010EBA8F /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				1AFB1EF09DE2E5792DD39AE6 /* BinaryProtocolTests.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		74BD4A54A5650C5A0356F973 /* cybchatShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				9C7DA061D3FD5E3A76A48FA1 /* cybchatShareExtension.entitlements */,
+				66CC1A4583CEBF2880705BEE /* Info.plist */,
+				2C040949938BD58088DEC636 /* ShareViewController.swift */,
+			);
+			path = cybchatShareExtension;
+			sourceTree = "<group>";
+		};
+		781ACA3424DFE6C4BD1BA2D3 /* Noise */ = {
+			isa = PBXGroup;
+			children = (
+				0420F35BD086AA096AF3F95C /* NoiseHandshakeCoordinator.swift */,
+				17E3C466002627BBE25A5FA3 /* NoiseProtocol.swift */,
+				36E2F8D04509E604C7CFAE0E /* NoiseSecurityConsiderations.swift */,
+				CE69DD81F2C2D1A7DE26B6A9 /* NoiseSession.swift */,
+			);
+			path = Noise;
+			sourceTree = "<group>";
+		};
+		84CF708824F2D9441DE671EC = {
+			isa = PBXGroup;
+			children = (
+				42FA1D165651FA29CAC8349E /* cybchat */,
+				74BD4A54A5650C5A0356F973 /* cybchatShareExtension */,
+				9FA9B918938607A7D201D86B /* cybchatTests */,
+				9E91B7FB2B2A11A424EA45D7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		97A06D2F8C874B79EB0BBD6B /* Noise */ = {
+			isa = PBXGroup;
+			children = (
+				4E637AC329B7AEFC99FB5A2F /* NoiseProtocolTests.swift */,
+			);
+			path = Noise;
+			sourceTree = "<group>";
+		};
+		9E91B7FB2B2A11A424EA45D7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FB9DD7AB39E23A0399299F6B /* cybchat_iOS.app */,
+				F2E28E33AD0E5924DE7CB094 /* cybchat_macOS.app */,
+				AC8F7F2E95BA2825DE581BD6 /* cybchatShareExtension.appex */,
+				DAE5B91C64C33C1A701D5289 /* cybchatTests_iOS.xctest */,
+				9B6942A50A483DCFBDD6B1BD /* cybchatTests_macOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9FA9B918938607A7D201D86B /* cybchatTests */ = {
+			isa = PBXGroup;
+			children = (
+				3798B1184B81519EAE801279 /* Info.plist */,
+				41F196E97B8538D0DF60FB6D /* NostrProtocolTests.swift */,
+				242856730F6CE32800477917 /* EndToEnd */,
+				13BB3F7FF6FB4EF611F1003D /* Integration */,
+				4FF60060D855D4A731C93954 /* Mocks */,
+				97A06D2F8C874B79EB0BBD6B /* Noise */,
+				68D663AE358BDE28010EBA8F /* Protocol */,
+				2D6BF7DA6A0B72228D8858A1 /* TestUtilities */,
+			);
+			path = cybchatTests;
+			sourceTree = "<group>";
+		};
+		BA7B2CF5C3455B2DA7E2F673 /* Nostr */ = {
+			isa = PBXGroup;
+			children = (
+				84C612CF8EF029D3A4DE1696 /* NostrIdentity.swift */,
+				DC836B568D168F91268EA0F6 /* NostrProtocol.swift */,
+				6E193CB3FCB7768DC3DCDA5F /* NostrRelayManager.swift */,
+			);
+			path = Nostr;
+			sourceTree = "<group>";
+		};
+		BBBE95D463E25B0F16064878 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				84C5A40678097CF61EE98A6D /* BluetoothMeshService.swift */,
+				FD83384A35E20272C7A25867 /* DeliveryTracker.swift */,
+				14A8D920CD630A1ECCA470EB /* FavoritesPersistenceService.swift */,
+				91346FD259375AA876A776A4 /* KeychainManager.swift */,
+				C63600689263B0697BFD189E /* MessageRetryService.swift */,
+				3D308488C10B973F8A485291 /* MessageRouter.swift */,
+				12B45A64BFFBE540AA51AA10 /* NoiseEncryptionService.swift */,
+				589E7C76BCBF3DA1632AD148 /* NotificationService.swift */,
+				1F5D14879B689A317BFD17C3 /* ProcessedMessagesService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		DB99C53ECE74C6162C15B9CE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7464CE74AF74E6F40BE13CAA /* CybchatPeer.swift */,
+				860FABC3E5D42D48243F1EE5 /* PeerSession.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DD997A48A5D07394B8C7D1A8 /* Identity */ = {
+			isa = PBXGroup;
+			children = (
+				53D6F94C16656FDBDB890582 /* IdentityModels.swift */,
+				AD18FC94B20E8BA8B48873FB /* SecureIdentityStateManager.swift */,
+			);
+			path = Identity;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		26B1EF5D8EFC8E46DB6A7BA4 /* cybchat_macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BBC610DEF4099D0895A3A00D /* Build configuration list for PBXNativeTarget "cybchat_macOS" */;
+			buildPhases = (
+				D6AC4046711B61877EE31D9B /* Sources */,
+				B7D7A37D04AD0214C75C69C5 /* Resources */,
+				133E9AB110FE633FA09216A1 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cybchat_macOS;
+			packageProductDependencies = (
+				6926BF99C4CE3FC29939CB79 /* P256K */,
+			);
+			productName = cybchat_macOS;
+			productReference = F2E28E33AD0E5924DE7CB094 /* cybchat_macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3DAF62A28AD377830409F74E /* cybchatTests_macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4CE8CC570DC1A87A64F28956 /* Build configuration list for PBXNativeTarget "cybchatTests_macOS" */;
+			buildPhases = (
+				B13D7F58BB4270B24559F0AE /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				49D8E2DCC5AE872B95BEDF47 /* PBXTargetDependency */,
+			);
+			name = cybchatTests_macOS;
+			packageProductDependencies = (
+			);
+			productName = cybchatTests_macOS;
+			productReference = 9B6942A50A483DCFBDD6B1BD /* cybchatTests_macOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6953ECBBBB1978E389C34FD2 /* cybchatShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 41C880C8744B68FD0B28F086 /* Build configuration list for PBXNativeTarget "cybchatShareExtension" */;
+			buildPhases = (
+				B8E35D89D743F8DBDF53E185 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cybchatShareExtension;
+			packageProductDependencies = (
+			);
+			productName = cybchatShareExtension;
+			productReference = AC8F7F2E95BA2825DE581BD6 /* cybchatShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		B784893D830CD9D30AB14F3C /* cybchatTests_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 76165EB32E2B44A8C635A191 /* Build configuration list for PBXNativeTarget "cybchatTests_iOS" */;
+			buildPhases = (
+				267AAA4F348DF31DFA37CE74 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8ABF4C2FCD95013C54C98FE3 /* PBXTargetDependency */,
+			);
+			name = cybchatTests_iOS;
+			packageProductDependencies = (
+			);
+			productName = cybchatTests_iOS;
+			productReference = DAE5B91C64C33C1A701D5289 /* cybchatTests_iOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F8A3C625334C4B5D20B3CD37 /* cybchat_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 375C48AA9A62F3A1F82662DA /* Build configuration list for PBXNativeTarget "cybchat_iOS" */;
+			buildPhases = (
+				734051086E4980F19231BED3 /* Sources */,
+				F844212E411B833847842568 /* Resources */,
+				4B78314605318326E605B8A2 /* Frameworks */,
+				578E973D8692313FFFCB0165 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2B353BF1BB0C4D963013D7F8 /* PBXTargetDependency */,
+			);
+			name = cybchat_iOS;
+			packageProductDependencies = (
+				1FBC677C64F0B71D3C0DCF66 /* P256K */,
+			);
+			productName = cybchat_iOS;
+			productReference = FB9DD7AB39E23A0399299F6B /* cybchat_iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C1EAB991928B0889E7856052 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					26B1EF5D8EFC8E46DB6A7BA4 = {
+						DevelopmentTeam = L3N5LHJD5Y;
+						ProvisioningStyle = Automatic;
+					};
+					3DAF62A28AD377830409F74E = {
+						DevelopmentTeam = L3N5LHJD5Y;
+						ProvisioningStyle = Automatic;
+					};
+					6953ECBBBB1978E389C34FD2 = {
+						DevelopmentTeam = L3N5LHJD5Y;
+						ProvisioningStyle = Automatic;
+					};
+					B784893D830CD9D30AB14F3C = {
+						DevelopmentTeam = L3N5LHJD5Y;
+						ProvisioningStyle = Automatic;
+					};
+					F8A3C625334C4B5D20B3CD37 = {
+						DevelopmentTeam = L3N5LHJD5Y;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 784D0CAD18D695A81CD89F02 /* Build configuration list for PBXProject "cybchat" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 84CF708824F2D9441DE671EC;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				5758D3F4919068C19A02E03F /* XCRemoteSwiftPackageReference "swift-secp256k1" */,
+			);
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6953ECBBBB1978E389C34FD2 /* cybchatShareExtension */,
+				B784893D830CD9D30AB14F3C /* cybchatTests_iOS */,
+				3DAF62A28AD377830409F74E /* cybchatTests_macOS */,
+				F8A3C625334C4B5D20B3CD37 /* cybchat_iOS */,
+				26B1EF5D8EFC8E46DB6A7BA4 /* cybchat_macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B7D7A37D04AD0214C75C69C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F8433CDBD7BC33616B0BFC5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F844212E411B833847842568 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A46360CC2F8F75F721711457 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		267AAA4F348DF31DFA37CE74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0FED929CB64224D720CD7CA /* BinaryProtocolTests.swift in Sources */,
+				77D0D48DE0781655A07833B4 /* IntegrationTests.swift in Sources */,
+				4D87BC8D9D9EB12DC8EEC060 /* MockBluetoothMeshService.swift in Sources */,
+				1E415364A0D8B524570C2C33 /* MockNoiseSession.swift in Sources */,
+				4296D38D6EF67047C416BEEE /* NoiseProtocolTests.swift in Sources */,
+				755D5428BC5658C8AA73959C /* NostrProtocolTests.swift in Sources */,
+				B2988452F7D0E009BEE3D865 /* PrivateChatE2ETests.swift in Sources */,
+				39897A61B2A17A6331396CE0 /* PublicChatE2ETests.swift in Sources */,
+				997E2ACABB2C0E97294111B6 /* TestConstants.swift in Sources */,
+				3DCA9042B27BC32450C65518 /* TestHelpers.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		734051086E4980F19231BED3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				447DBABDA8514D7895494643 /* AppInfoView.swift in Sources */,
+				BEE4DA39818E70E5CAEE6B95 /* BatteryOptimizer.swift in Sources */,
+				18AFFD264CBAB88386DE99AF /* BinaryEncodingUtils.swift in Sources */,
+				3259B4029DE55DB6B2AAA5FD /* BinaryProtocol.swift in Sources */,
+				A620C2FCCC12186F06ECA8C9 /* BluetoothMeshService.swift in Sources */,
+				BF8F65344E25AC8099DE42DA /* ChatViewModel.swift in Sources */,
+				34D50606FD0A941763D49683 /* CompressionUtil.swift in Sources */,
+				3A4E8C7D4990EA21F0062A6D /* ContentView.swift in Sources */,
+				41BC6870081E986C617A9EDA /* CybchatApp.swift in Sources */,
+				7369293592174F49C593BEDF /* CybchatPeer.swift in Sources */,
+				9B279EAF805895DE5D837766 /* CybchatProtocol.swift in Sources */,
+				3A660DB26DCA6E7D648AE671 /* DeliveryTracker.swift in Sources */,
+				34EB64C06AE49958F0352678 /* FavoritesPersistenceService.swift in Sources */,
+				521CD3C1CDCBF6A316BC665C /* FingerprintView.swift in Sources */,
+				48FBE26F48D57226A4320F4F /* IdentityModels.swift in Sources */,
+				DEDF6E487817E2F57B32D91F /* InputValidator.swift in Sources */,
+				D98D9112FE792780491B5B5C /* KeychainManager.swift in Sources */,
+				A3DDE7134D5F9F1C898FFB14 /* LRUCache.swift in Sources */,
+				C420191FBED7055F468A40DA /* LinkPreviewView.swift in Sources */,
+				70BD21B811C69FA6543A65D7 /* MessageRetryService.swift in Sources */,
+				01EF8D084ECB7A2D48C17BD9 /* MessageRouter.swift in Sources */,
+				FDB833543CABF5E4C7A19D0F /* NoiseEncryptionService.swift in Sources */,
+				B2502D14E6ED3EF884FD0CB3 /* NoiseHandshakeCoordinator.swift in Sources */,
+				39012D87B90D70CEB36BFFD2 /* NoiseProtocol.swift in Sources */,
+				08C62501C014A8FB1A383E78 /* NoiseSecurityConsiderations.swift in Sources */,
+				BFBA7155D0684BF2783D9677 /* NoiseSession.swift in Sources */,
+				596314B6AE4E11CD53129DB9 /* NostrIdentity.swift in Sources */,
+				4E528C8E667389B9ED6BBC04 /* NostrProtocol.swift in Sources */,
+				FF018F74B4A366C39AA1BDC7 /* NostrRelayManager.swift in Sources */,
+				CCA3AE30B22FBEB5C3DA5AB4 /* NotificationService.swift in Sources */,
+				8A4624C63867DFCA75ED9F64 /* OptimizedBloomFilter.swift in Sources */,
+				B8F013F3DD03203E294EF08E /* PeerSession.swift in Sources */,
+				F040CD20A1A1A7CB1EAFEB2A /* ProcessedMessagesService.swift in Sources */,
+				FA1F8DC6ADEE49D40A656E1C /* SecureIdentityStateManager.swift in Sources */,
+				7AC0B521FCB9638556956F3B /* SecureLogger.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B13D7F58BB4270B24559F0AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14741A8265D84DF1DC812237 /* BinaryProtocolTests.swift in Sources */,
+				EDE0EA4A8EE480A979313F75 /* IntegrationTests.swift in Sources */,
+				5366C39F286E77211922EBB2 /* MockBluetoothMeshService.swift in Sources */,
+				4F3E2CE10A255C261A4EF80D /* MockNoiseSession.swift in Sources */,
+				368D74FC6DCB28538BDB3711 /* NoiseProtocolTests.swift in Sources */,
+				2D14500FA8DD4B7891A7EBE2 /* NostrProtocolTests.swift in Sources */,
+				81E4D5A0E299ECECD512ABD5 /* PrivateChatE2ETests.swift in Sources */,
+				AAA28E7E7ADE73ADC8D60538 /* PublicChatE2ETests.swift in Sources */,
+				5EEE16A3B062DC0D62146C63 /* TestConstants.swift in Sources */,
+				AC635B648C15D6B79EAA1A2B /* TestHelpers.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8E35D89D743F8DBDF53E185 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A9B4BB1677BD0A0360D27DB /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6AC4046711B61877EE31D9B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEFCBC1CDD0BD9E5D8DB375E /* AppInfoView.swift in Sources */,
+				839C1AF7295B33E755E4F474 /* BatteryOptimizer.swift in Sources */,
+				DF100D671CCFEB7B2FC7D474 /* BinaryEncodingUtils.swift in Sources */,
+				0307E10A2933A1812792E7C0 /* BinaryProtocol.swift in Sources */,
+				D63778AE26A2A23AF24A8734 /* BluetoothMeshService.swift in Sources */,
+				7B27351C540AFC24B9774541 /* ChatViewModel.swift in Sources */,
+				0F9BB731B3599108788A59A1 /* CompressionUtil.swift in Sources */,
+				941E451839986BD2A39F9DE3 /* ContentView.swift in Sources */,
+				9AF3208BC2601729278B6D78 /* CybchatApp.swift in Sources */,
+				F39C264E08952F3A84F6465B /* CybchatPeer.swift in Sources */,
+				2ADFCA24E267E1F8121F33F4 /* CybchatProtocol.swift in Sources */,
+				4B85B2E2BB8C29BDCF75F920 /* DeliveryTracker.swift in Sources */,
+				377240F45BAA7B9D6854EFE3 /* FavoritesPersistenceService.swift in Sources */,
+				C234FADB2EE06733459F04EC /* FingerprintView.swift in Sources */,
+				074B63376F5671D23095BAE1 /* IdentityModels.swift in Sources */,
+				E0736ED9078C817772557C88 /* InputValidator.swift in Sources */,
+				F09B068858D0E08A06099480 /* KeychainManager.swift in Sources */,
+				DE37E24C54E3777991A5EED0 /* LRUCache.swift in Sources */,
+				172005D0127C870B95E404F9 /* LinkPreviewView.swift in Sources */,
+				20A61ECDDC7E55CF25F88360 /* MessageRetryService.swift in Sources */,
+				9CDF022A4E22F0392F5A37F1 /* MessageRouter.swift in Sources */,
+				2252F720E93B6FC100DDEC65 /* NoiseEncryptionService.swift in Sources */,
+				2CA38EE07F595D6933C64397 /* NoiseHandshakeCoordinator.swift in Sources */,
+				FCBEEE515FC88211E2CC6165 /* NoiseProtocol.swift in Sources */,
+				88F8DF1E9154248A9700E83F /* NoiseSecurityConsiderations.swift in Sources */,
+				19C551B37C57C1644CA23F72 /* NoiseSession.swift in Sources */,
+				E2A8E340772B9A03453E56AD /* NostrIdentity.swift in Sources */,
+				CCCB416C2C5387DB33EEBED5 /* NostrProtocol.swift in Sources */,
+				BCB10CA4637CE9184BE61A92 /* NostrRelayManager.swift in Sources */,
+				5C0280BB044EF29C5F980ECD /* NotificationService.swift in Sources */,
+				4ABEFF4C9818903FD1A8C0A2 /* OptimizedBloomFilter.swift in Sources */,
+				960831FB33ED89DDB2175758 /* PeerSession.swift in Sources */,
+				D940F2FAF440152DAEAF0965 /* ProcessedMessagesService.swift in Sources */,
+				F7EAF3ED205336F6F7772F72 /* SecureIdentityStateManager.swift in Sources */,
+				F8301A8F2555719938568780 /* SecureLogger.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2B353BF1BB0C4D963013D7F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6953ECBBBB1978E389C34FD2 /* cybchatShareExtension */;
+			targetProxy = 826487F9B799BDAE13E94E4B /* PBXContainerItemProxy */;
+		};
+		49D8E2DCC5AE872B95BEDF47 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 26B1EF5D8EFC8E46DB6A7BA4 /* cybchat_macOS */;
+			targetProxy = 49D0A193F295485CF1E02F7C /* PBXContainerItemProxy */;
+		};
+		8ABF4C2FCD95013C54C98FE3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F8A3C625334C4B5D20B3CD37 /* cybchat_iOS */;
+			targetProxy = 4FC4D4114C23830EE0F81AA3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0E978F9FC9EEB8AE0D291DFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2F70E1A000E746E13D644723 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
+				CODE_SIGN_ENTITLEMENTS = cybchatShareExtension/cybchatShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L3N5LHJD5Y;
+				INFOPLIST_FILE = cybchatShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = chat.cybchat.ShareExtension;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		48D30E46114303DC1812453F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_ENTITLEMENTS = "cybchat/cybchat-macOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = L3N5LHJD5Y;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = cybchat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = chat.cybchat;
+				PRODUCT_NAME = cybchat;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		4D69C6818B15AD370CAC0884 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L3N5LHJD5Y;
+				INFOPLIST_FILE = cybchatTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = chat.cybchat.tests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cybchat.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/cybchat";
+			};
+			name = Debug;
+		};
+		4EB9652DCEA790E2EA9464F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_ENTITLEMENTS = "cybchat/cybchat-macOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = L3N5LHJD5Y;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = cybchat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = chat.cybchat;
+				PRODUCT_NAME = cybchat;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		50BCF825128871834A09F92D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		58FE4C77D8405ECDA56A26E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = L3N5LHJD5Y;
+				INFOPLIST_FILE = cybchatTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = chat.cybchat.tests;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cybchat.app/Contents/MacOS/cybchat";
+			};
+			name = Debug;
+		};
+		BB82CED433F484B1BC71E4F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
+				CODE_SIGN_ENTITLEMENTS = cybchatShareExtension/cybchatShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L3N5LHJD5Y;
+				INFOPLIST_FILE = cybchatShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = chat.cybchat.ShareExtension;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BB8FAB3DAA0DB4DB20F23B58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L3N5LHJD5Y;
+				INFOPLIST_FILE = cybchatTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = chat.cybchat.tests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cybchat.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/cybchat";
+			};
+			name = Release;
+		};
+		C4A953A48CDCCE52538ECB68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = L3N5LHJD5Y;
+				INFOPLIST_FILE = cybchatTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = chat.cybchat.tests;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cybchat.app/Contents/MacOS/cybchat";
+			};
+			name = Release;
+		};
+		DB9C42EFAD1A6550F69564B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_ENTITLEMENTS = cybchat/cybchat.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L3N5LHJD5Y;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = cybchat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = chat.cybchat;
+				PRODUCT_NAME = cybchat;
+				SDKROOT = iphoneos;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E94906E73999F9337393635E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_ENTITLEMENTS = cybchat/cybchat.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L3N5LHJD5Y;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = cybchat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = chat.cybchat;
+				PRODUCT_NAME = cybchat;
+				SDKROOT = iphoneos;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		375C48AA9A62F3A1F82662DA /* Build configuration list for PBXNativeTarget "cybchat_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E94906E73999F9337393635E /* Debug */,
+				DB9C42EFAD1A6550F69564B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		41C880C8744B68FD0B28F086 /* Build configuration list for PBXNativeTarget "cybchatShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F70E1A000E746E13D644723 /* Debug */,
+				BB82CED433F484B1BC71E4F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4CE8CC570DC1A87A64F28956 /* Build configuration list for PBXNativeTarget "cybchatTests_macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				58FE4C77D8405ECDA56A26E7 /* Debug */,
+				C4A953A48CDCCE52538ECB68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		76165EB32E2B44A8C635A191 /* Build configuration list for PBXNativeTarget "cybchatTests_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D69C6818B15AD370CAC0884 /* Debug */,
+				BB8FAB3DAA0DB4DB20F23B58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		784D0CAD18D695A81CD89F02 /* Build configuration list for PBXProject "cybchat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E978F9FC9EEB8AE0D291DFD /* Debug */,
+				50BCF825128871834A09F92D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BBC610DEF4099D0895A3A00D /* Build configuration list for PBXNativeTarget "cybchat_macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4EB9652DCEA790E2EA9464F9 /* Debug */,
+				48D30E46114303DC1812453F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5758D3F4919068C19A02E03F /* XCRemoteSwiftPackageReference "swift-secp256k1" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/21-DOT-DEV/swift-secp256k1";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.21.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1FBC677C64F0B71D3C0DCF66 /* P256K */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5758D3F4919068C19A02E03F /* XCRemoteSwiftPackageReference "swift-secp256k1" */;
+			productName = P256K;
+		};
+		6926BF99C4CE3FC29939CB79 /* P256K */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5758D3F4919068C19A02E03F /* XCRemoteSwiftPackageReference "swift-secp256k1" */;
+			productName = P256K;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = C1EAB991928B0889E7856052 /* Project object */;
+}

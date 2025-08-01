@@ -1,9 +1,9 @@
-# BitChat macOS Build Justfile
+# CybChat macOS Build Justfile
 # Handles temporary modifications needed to build and run on macOS
 
 # Default recipe - shows available commands
 default:
-    @echo "BitChat macOS Build Commands:"
+    @echo "CybChat macOS Build Commands:"
     @echo "  just run     - Build and run the macOS app"
     @echo "  just build   - Build the macOS app only"
     @echo "  just clean   - Clean build artifacts and restore original files"
@@ -24,25 +24,25 @@ backup:
     @echo "Backing up original project configuration..."
     @cp project.yml project.yml.backup 2>/dev/null || true
     @# Backup other files that get modified by xcodegen
-    @if [ -f bitchat.xcodeproj/project.pbxproj ]; then cp bitchat.xcodeproj/project.pbxproj bitchat.xcodeproj/project.pbxproj.backup; fi
-    @if [ -f bitchat/Info.plist ]; then cp bitchat/Info.plist bitchat/Info.plist.backup; fi
+    @if [ -f cybchat.xcodeproj/project.pbxproj ]; then cp cybchat.xcodeproj/project.pbxproj cybchat.xcodeproj/project.pbxproj.backup; fi
+    @if [ -f cybchat/Info.plist ]; then cp cybchat/Info.plist cybchat/Info.plist.backup; fi
 
 # Restore original files
 restore:
     @echo "Restoring original project configuration..."
     @if [ -f project.yml.backup ]; then mv project.yml.backup project.yml; fi
     @# Restore iOS-specific files
-    @if [ -f bitchat/LaunchScreen.storyboard.ios ]; then mv bitchat/LaunchScreen.storyboard.ios bitchat/LaunchScreen.storyboard; fi
+    @if [ -f cybchat/LaunchScreen.storyboard.ios ]; then mv cybchat/LaunchScreen.storyboard.ios cybchat/LaunchScreen.storyboard; fi
     @# Use git to restore all modified files except Justfile
-    @git checkout -- project.yml bitchat.xcodeproj/project.pbxproj bitchat/Info.plist 2>/dev/null || echo "⚠️  Could not restore some files with git"
+    @git checkout -- project.yml cybchat.xcodeproj/project.pbxproj cybchat/Info.plist 2>/dev/null || echo "⚠️  Could not restore some files with git"
     @# Remove any backup files
-    @rm -f bitchat.xcodeproj/project.pbxproj.backup bitchat/Info.plist.backup 2>/dev/null || true
+    @rm -f cybchat.xcodeproj/project.pbxproj.backup cybchat/Info.plist.backup 2>/dev/null || true
 
 # Apply macOS-specific modifications
 patch-for-macos: backup
     @echo "Temporarily hiding iOS-specific files for macOS build..."
     @# Move iOS-specific files out of the way temporarily
-    @if [ -f bitchat/LaunchScreen.storyboard ]; then mv bitchat/LaunchScreen.storyboard bitchat/LaunchScreen.storyboard.ios; fi
+    @if [ -f cybchat/LaunchScreen.storyboard ]; then mv cybchat/LaunchScreen.storyboard cybchat/LaunchScreen.storyboard.ios; fi
 
 # Generate Xcode project with patches
 generate: patch-for-macos
@@ -51,23 +51,23 @@ generate: patch-for-macos
 
 # Build the macOS app
 build: check generate
-    @echo "Building BitChat for macOS..."
-    @xcodebuild -project bitchat.xcodeproj -scheme "bitchat (macOS)" -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGN_ENTITLEMENTS="" build
+    @echo "Building CybChat for macOS..."
+    @xcodebuild -project cybchat.xcodeproj -scheme "cybchat (macOS)" -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGN_ENTITLEMENTS="" build
 
 # Run the macOS app
 run: build
-    @echo "Launching BitChat..."
-    @find ~/Library/Developer/Xcode/DerivedData -name "bitchat.app" -path "*/Debug/*" | head -1 | xargs -I {} open "{}"
+    @echo "Launching CybChat..."
+    @find ~/Library/Developer/Xcode/DerivedData -name "cybchat.app" -path "*/Debug/*" | head -1 | xargs -I {} open "{}"
 
 # Clean build artifacts and restore original files
 clean: restore
     @echo "Cleaning build artifacts..."
-    @rm -rf ~/Library/Developer/Xcode/DerivedData/bitchat-* 2>/dev/null || true
+    @rm -rf ~/Library/Developer/Xcode/DerivedData/cybchat-* 2>/dev/null || true
     @# Only remove the generated project if we have a backup, otherwise use git
-    @if [ -f bitchat.xcodeproj/project.pbxproj.backup ]; then \
-        rm -rf bitchat.xcodeproj; \
+    @if [ -f cybchat.xcodeproj/project.pbxproj.backup ]; then \
+        rm -rf cybchat.xcodeproj; \
     else \
-        git checkout -- bitchat.xcodeproj/project.pbxproj 2>/dev/null || echo "⚠️  Could not restore project.pbxproj"; \
+        git checkout -- cybchat.xcodeproj/project.pbxproj 2>/dev/null || echo "⚠️  Could not restore project.pbxproj"; \
     fi
     @rm -f project-macos.yml 2>/dev/null || true
     @echo "✅ Cleaned and restored original files"
@@ -77,12 +77,12 @@ dev-run: check
     @echo "Quick development build..."
     @if [ ! -f project.yml.backup ]; then just patch-for-macos; fi
     @xcodegen generate
-    @xcodebuild -project bitchat.xcodeproj -scheme "bitchat (macOS)" -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGN_ENTITLEMENTS="" build
-    @find ~/Library/Developer/Xcode/DerivedData -name "bitchat.app" -path "*/Debug/*" | head -1 | xargs -I {} open "{}"
+    @xcodebuild -project cybchat.xcodeproj -scheme "cybchat (macOS)" -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGN_ENTITLEMENTS="" build
+    @find ~/Library/Developer/Xcode/DerivedData -name "cybchat.app" -path "*/Debug/*" | head -1 | xargs -I {} open "{}"
 
 # Show app info
 info:
-    @echo "BitChat - Decentralized Mesh Messaging"
+    @echo "CybChat - Decentralized Mesh Messaging"
     @echo "======================================"
     @echo "• Native macOS SwiftUI app"
     @echo "• Bluetooth LE mesh networking"
@@ -104,13 +104,13 @@ info:
 # Force clean everything (nuclear option)
 nuke:
     @echo "🧨 Nuclear clean - removing all build artifacts and backups..."
-    @rm -rf ~/Library/Developer/Xcode/DerivedData/bitchat-* 2>/dev/null || true
-    @rm -rf bitchat.xcodeproj 2>/dev/null || true
+    @rm -rf ~/Library/Developer/Xcode/DerivedData/cybchat-* 2>/dev/null || true
+    @rm -rf cybchat.xcodeproj 2>/dev/null || true
     @rm -f project.yml.backup 2>/dev/null || true
     @rm -f project-macos.yml 2>/dev/null || true
-    @rm -f bitchat.xcodeproj/project.pbxproj.backup 2>/dev/null || true
-    @rm -f bitchat/Info.plist.backup 2>/dev/null || true
+    @rm -f cybchat.xcodeproj/project.pbxproj.backup 2>/dev/null || true
+    @rm -f cybchat/Info.plist.backup 2>/dev/null || true
     @# Restore iOS-specific files if they were moved
-    @if [ -f bitchat/LaunchScreen.storyboard.ios ]; then mv bitchat/LaunchScreen.storyboard.ios bitchat/LaunchScreen.storyboard; fi
-    @git checkout -- project.yml bitchat.xcodeproj/project.pbxproj bitchat/Info.plist 2>/dev/null || echo "⚠️  Not a git repo or no changes to restore"
+    @if [ -f cybchat/LaunchScreen.storyboard.ios ]; then mv cybchat/LaunchScreen.storyboard.ios cybchat/LaunchScreen.storyboard; fi
+    @git checkout -- project.yml cybchat.xcodeproj/project.pbxproj cybchat/Info.plist 2>/dev/null || echo "⚠️  Not a git repo or no changes to restore"
     @echo "✅ Nuclear clean complete"

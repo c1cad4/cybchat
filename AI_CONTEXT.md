@@ -55,7 +55,7 @@ BitChat is a decentralized, peer-to-peer messaging application that works over B
 ## Core Components
 
 ### 1. BluetoothMeshService (Transport Layer)
-- **Location**: `bitchat/Services/BluetoothMeshService.swift`
+- **Location**: `cybchat/Services/BluetoothMeshService.swift`
 - **Purpose**: Manages BLE connections and implements mesh networking
 - **Key Responsibilities**:
   - Peer discovery (scanning and advertising simultaneously)
@@ -65,7 +65,7 @@ BitChat is a decentralized, peer-to-peer messaging application that works over B
   - Automatic reconnection and topology management
 
 ### 2. BitchatProtocol (Protocol Layer)
-- **Location**: `bitchat/Protocols/BitchatProtocol.swift`
+- **Location**: `cybchat/Protocols/BitchatProtocol.swift`
 - **Purpose**: Defines the application-level messaging protocol
 - **Key Features**:
   - Binary packet format for efficiency
@@ -76,9 +76,9 @@ BitChat is a decentralized, peer-to-peer messaging application that works over B
 
 ### 3. NoiseProtocol Implementation
 - **Locations**: 
-  - `bitchat/Noise/NoiseProtocol.swift` - Core protocol implementation
-  - `bitchat/Noise/NoiseSession.swift` - Session management
-  - `bitchat/Services/NoiseEncryptionService.swift` - High-level encryption API
+  - `cybchat/Noise/NoiseProtocol.swift` - Core protocol implementation
+  - `cybchat/Noise/NoiseSession.swift` - Session management
+  - `cybchat/Services/NoiseEncryptionService.swift` - High-level encryption API
 - **Purpose**: Provides end-to-end encryption for private messages
 - **Implementation Details**:
   - Uses Noise_XX_25519_AESGCM_SHA256 pattern
@@ -87,7 +87,7 @@ BitChat is a decentralized, peer-to-peer messaging application that works over B
   - Integrated with identity management
 
 ### 4. Identity System
-- **Location**: `bitchat/Identity/`
+- **Location**: `cybchat/Identity/`
 - **Three-Layer Model**:
   1. **Ephemeral Identity**: Short-lived, rotates frequently
   2. **Cryptographic Identity**: Long-term Noise static keypair
@@ -95,7 +95,7 @@ BitChat is a decentralized, peer-to-peer messaging application that works over B
 - **Trust Levels**: Untrusted → Verified → Trusted → Blocked
 
 ### 5. ChatViewModel
-- **Location**: `bitchat/ViewModels/ChatViewModel.swift`
+- **Location**: `cybchat/ViewModels/ChatViewModel.swift`
 - **Purpose**: Central state management and business logic
 - **Responsibilities**:
   - Message handling and batching
@@ -105,10 +105,10 @@ BitChat is a decentralized, peer-to-peer messaging application that works over B
 
 ### 6. Nostr Integration
 - **Locations**:
-  - `bitchat/Nostr/NostrProtocol.swift` - NIP-17 private message implementation
-  - `bitchat/Nostr/NostrRelayManager.swift` - WebSocket relay connections
-  - `bitchat/Nostr/NostrIdentity.swift` - Nostr key management
-  - `bitchat/Services/MessageRouter.swift` - Transport selection logic
+  - `cybchat/Nostr/NostrProtocol.swift` - NIP-17 private message implementation
+  - `cybchat/Nostr/NostrRelayManager.swift` - WebSocket relay connections
+  - `cybchat/Nostr/NostrIdentity.swift` - Nostr key management
+  - `cybchat/Services/MessageRouter.swift` - Transport selection logic
 - **Purpose**: Enables communication with mutual favorites when out of Bluetooth range
 - **Key Features**:
   - NIP-17 gift-wrapped private messages for metadata privacy
@@ -117,7 +117,7 @@ BitChat is a decentralized, peer-to-peer messaging application that works over B
   - Integrated with favorites system for mutual authentication
 
 ### 7. MessageRouter
-- **Location**: `bitchat/Services/MessageRouter.swift`
+- **Location**: `cybchat/Services/MessageRouter.swift`
 - **Purpose**: Intelligent routing between Bluetooth mesh and Nostr transports
 - **Transport Selection Logic**:
   1. Always prefer Bluetooth mesh when peer is connected
@@ -160,7 +160,7 @@ BitChat is a decentralized, peer-to-peer messaging application that works over B
 
 ## Code Organization
 
-### Services (`/bitchat/Services/`)
+### Services (`/cybchat/Services/`)
 Application-level services that coordinate between layers:
 - `BluetoothMeshService`: Core networking
 - `NoiseEncryptionService`: Encryption coordination
@@ -168,13 +168,13 @@ Application-level services that coordinate between layers:
 - `DeliveryTracker`: Acknowledgment handling
 - `NotificationService`: System notifications
 
-### Protocols (`/bitchat/Protocols/`)
+### Protocols (`/cybchat/Protocols/`)
 Protocol definitions and implementations:
 - `BitchatProtocol`: Application protocol
 - `BinaryProtocol`: Low-level encoding
 - `BinaryEncodingUtils`: Helper functions
 
-### Noise (`/bitchat/Noise/`)
+### Noise (`/cybchat/Noise/`)
 Noise Protocol Framework implementation:
 - `NoiseProtocol`: Core cryptographic operations
 - `NoiseSession`: Session state management
