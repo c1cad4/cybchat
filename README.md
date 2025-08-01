@@ -1,4 +1,4 @@
-<img width="256" height="256" alt="icon_128x128@2x" src="https://github.com/user-attachments/assets/90133f83-b4f6-41c6-aab9-25d0859d2a47" />
+<img width="256" height="256" alt="CybChat Logo" src="cybchat_logo.png" />
 
 # cybchat
 
