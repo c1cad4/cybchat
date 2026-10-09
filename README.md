@@ -81,3 +81,8 @@ Want to try this on macos: `just run` will set it up and run from source. Run `j
 ## About
 
  bluetooth mesh chat, IRC vibes
+
+
+## Экосистема cybOS
+
+[Роль проекта, команды и границы](docs/ECOSYSTEM.md) · [Карта всех компонентов](https://github.com/c1cad4/cybOS).
